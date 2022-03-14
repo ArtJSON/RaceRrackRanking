@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= racetrack.name %> </title>
+</head>
+<body>
+    <h1>Edit the data of <%= racetrack.name %></h1>
+    <form action="/racetracks/<%= racetrack.id %>?_method=PATCH" method="POST">
+        <label for="name">Enter the name: </label>
+        <input type="text" id="name" name="name" value="<%= racetrack.name %>">
+        <br>
+        <br>
+
+        <label for="pricePerLap">Enter the price per lap: </label>
+        <input type="number" step="0.01" id="pricePerLap" name="pricePerLap" value="<%= racetrack.pricePerLap %>">
+        <br>
+        <br>
+
+        <label for="description">Enter the description: </label>
+        <input type="text" id="description" name="description" value="<%= racetrack.description %>">
+        <br>
+        <br>
+
+        <label for="location">Enter the location: </label>
+        <input type="text" id="location" name="location" value="<%= racetrack.location %>">
+        <br>
+        <br>
+        <button>Submit changes</button>
+    </form>
+    <a href="/racetracks/new">Edit</a>
+</body>
+</html>

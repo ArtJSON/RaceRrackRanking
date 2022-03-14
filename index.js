@@ -39,7 +39,7 @@ app.get('/racetracks/new', (req, res) => {
 app.post('/racetracks', async (req, res) => {
     const newRacetrack = new Racetrack(req.body);
     newRacetrack.save();
-    res.redirect('/racetracks/'+newRacetrack.id);
+    res.redirect(`/racetracks/${newRacetrack.id}`);
 });
 
 app.delete('/racetracks/:id', async (req, res) => {
@@ -48,11 +48,21 @@ app.delete('/racetracks/:id', async (req, res) => {
     res.redirect('/racetracks');
 });
 
+app.get('/racetracks/:id/edit', async (req, res) => {
+    const racetrack = await Racetrack.findById(req.params.id);
+    res.render('racetracks/edit', { racetrack });
+});
+
 app.get('/racetracks/:id', async (req, res) => {
     const id = req.params.id;
     const racetrack = await Racetrack.findById(id);
     res.render('racetracks/show', { racetrack });
 });
 
+app.patch('/racetracks/:id', async (req, res) => {
+    const id = req.params.id;
+    const racetrack = await Racetrack.findByIdAndUpdate(id, req.body);
+    res.redirect(`/racetracks/${racetrack.id}`)
+});
 
 
