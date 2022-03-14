@@ -14,5 +14,9 @@
         <li>Description: <%= racetrack.description %> </li>
     </ul>
     <a href="/racetracks">Go back to the list of racetracks</a>
+    <br>
+    <form action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
+        <button>Delete this racetrack</button>
+    </form>
 </body>
 </html>

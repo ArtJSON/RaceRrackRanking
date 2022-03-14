@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const path = require('path');
 const Racetrack = require('./models/racetrack');
+const methodOverride = require('method-override')
 
 // mongoose connection to mongoDB
 mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
@@ -15,6 +16,8 @@ mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
 // set express view engine to ejs and changed the default path of views dir
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
+app.use(express.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 app.listen(3333, () => {
     console.log('Listening on port 3333');
@@ -29,12 +32,20 @@ app.get('/racetracks', async (req, res) => {
     res.render('racetracks/index', { racetracks });
 });
 
-app.get('/racetracks/new', async (req, res) => {
-    res.render('racetracks/new', { racetrack });
+app.get('/racetracks/new', (req, res) => {
+    res.render('racetracks/new');
 });
 
-app.post('/racetracks/new', async (req, res) => {
-    res.redirect('racetracks/index');
+app.post('/racetracks', async (req, res) => {
+    const newRacetrack = new Racetrack(req.body);
+    newRacetrack.save();
+    res.redirect('/racetracks/'+newRacetrack.id);
+});
+
+app.delete('/racetracks/:id', async (req, res) => {
+    const {id} = req.params;
+    await Racetrack.findByIdAndDelete(id);
+    res.redirect('/racetracks');
 });
 
 app.get('/racetracks/:id', async (req, res) => {
