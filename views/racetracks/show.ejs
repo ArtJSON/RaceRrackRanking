@@ -1,12 +1,20 @@
 <% layout('layouts/boilerplate') %> 
-<h1><%= racetrack.name %></h1>
-<h2>Located in <%= racetrack.location %></h2>
-<img src="<%= racetrack.img %>" class="w-100">
-<p><%= racetrack.description %></p>
-<p>Price per lap: <%= racetrack.pricePerLap %></p>
-
-<a class ="btn btn-primary mb-3" href="/racetracks/<%= racetrack.id %>/edit">Edit this racetrack</a>
-
-<form action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
-    <button class="btn btn-primary mb-3">Delete this racetrack</button>
-</form>
+<div class="my-3">
+    <div class="card">
+        <img src="<%= racetrack.img %>" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title"><%= racetrack.name %></h5>
+          <p class="card-text"><%= racetrack.description %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item text-muted"><%= racetrack.location %></li>
+            <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
+          </ul>
+        <div class="card-body">
+            <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete this racetrack</button>
+            </form>
+            <a class="card-link btn btn-primary" href="/racetracs/<%= racetrack.id %>/edit">Edit</a>
+        </div>
+      </div>
+</div>
