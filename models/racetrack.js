@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const RacetrackSchema = new Schema({
     name: String,
+    img: String,
     pricePerLap: {
         type: Number,
         min: 0

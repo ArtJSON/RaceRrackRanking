@@ -1,10 +1,10 @@
 <% layout('layouts/boilerplate') %> 
-<h1>Details about <%= racetrack.name %></h1>
-<ul>
-    <li>Price per lap: <%= racetrack.pricePerLap %> </li>
-    <li>Location: <%= racetrack.location %> </li>
-    <li>Description: <%= racetrack.description %> </li>
-</ul>
+<h1><%= racetrack.name %></h1>
+<h2>Located in <%= racetrack.location %></h2>
+<img src="<%= racetrack.img %>" class="w-100">
+<p><%= racetrack.description %></p>
+<p>Price per lap: <%= racetrack.pricePerLap %></p>
+
 <a href="/racetracks">Go back to the list of racetracks</a>
 <br>
 <a href="/racetracks/<%= racetrack.id %>/edit">Edit this racetrack</a>
