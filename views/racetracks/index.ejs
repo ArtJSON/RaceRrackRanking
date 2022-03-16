@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
-</head>
-<body>
-    <h1>Home page of race track ranking</h1>
-    <ol>
-        <% for( let racetrack of racetracks ) { %>
-            <li>
-                <div>
-                    <h4><%= racetrack.name %>  </h4>
-                    <a href="/racetracks/<%= racetrack.id %>">Details</a>
-                </div>
-            </li>
-        <% } %>
-    </ol>
-    <a href="/racetracks/new"></a>
-</body>
-</html>
+<% layout('layouts/boilerplate') %> 
+<h1>Home page of race track ranking</h1>
+<ol>
+    <% for( let racetrack of racetracks ) { %>
+        <li>
+            <div>
+                <h4><%= racetrack.name %>  </h4>
+                <a href="/racetracks/<%= racetrack.id %>">Details</a>
+            </div>
+        </li>
+    <% } %>
+</ol>
+<a href="/racetracks/new"></a>

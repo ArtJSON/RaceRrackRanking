@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= racetrack.name %> </title>
-</head>
-<body>
-    <h1>Details about <%= racetrack.name %></h1>
-    <ul>
-        <li>Price per lap: <%= racetrack.pricePerLap %> </li>
-        <li>Location: <%= racetrack.location %> </li>
-        <li>Description: <%= racetrack.description %> </li>
-    </ul>
-    <a href="/racetracks">Go back to the list of racetracks</a>
-    <br>
-    <a href="/racetracks/<%= racetrack.id %>/edit">Edit this racetrack</a>
-    <br>
-    <form action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
-        <button>Delete this racetrack</button>
-    </form>
-</body>
-</html>
+<% layout('layouts/boilerplate') %> 
+<h1>Details about <%= racetrack.name %></h1>
+<ul>
+    <li>Price per lap: <%= racetrack.pricePerLap %> </li>
+    <li>Location: <%= racetrack.location %> </li>
+    <li>Description: <%= racetrack.description %> </li>
+</ul>
+<a href="/racetracks">Go back to the list of racetracks</a>
+<br>
+<a href="/racetracks/<%= racetrack.id %>/edit">Edit this racetrack</a>
+<br>
+<form action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
+    <button>Delete this racetrack</button>
+</form>

@@ -1,34 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create new race track</title>
-</head>
-<body>
-    <form action="/racetracks" method="POST">
-        <label for="name">Enter the name: </label>
-        <input type="text" id="name" name="name">
-        <br>
-        <br>
+<% layout('layouts/boilerplate') %> 
+<form action="/racetracks" method="POST">
+    <label for="name">Enter the name: </label>
+    <input type="text" id="name" name="name">
+    <br>
+    <br>
 
-        <label for="pricePerLap">Enter the price per lap: </label>
-        <input type="number" step="0.01" value="0" id="pricePerLap" name="pricePerLap">
-        <br>
-        <br>
+    <label for="pricePerLap">Enter the price per lap: </label>
+    <input type="number" step="0.01" value="0" id="pricePerLap" name="pricePerLap">
+    <br>
+    <br>
 
-        <label for="description">Enter the description: </label>
-        <input type="text" id="description" name="description">
-        <br>
-        <br>
+    <label for="description">Enter the description: </label>
+    <input type="text" id="description" name="description">
+    <br>
+    <br>
 
-        <label for="location">Enter the location: </label>
-        <input type="text" id="location" name="location">
-        <br>
-        <br>
-        <button>Submit</button>
-    </form>
-    <a href="/racetracks">Quit editing</a>
-</body>
-</html>
+    <label for="location">Enter the location: </label>
+    <input type="text" id="location" name="location">
+    <br>
+    <br>
+    <button>Submit</button>
+</form>
+<a href="/racetracks">Quit editing</a>
