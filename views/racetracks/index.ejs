@@ -1,13 +1,20 @@
 <% layout('layouts/boilerplate') %> 
-<h1>Home page of race track ranking</h1>
-<ol>
-    <% for( let racetrack of racetracks ) { %>
-        <li>
-            <div>
-                <h4><%= racetrack.name %>  </h4>
-                <a href="/racetracks/<%= racetrack.id %>">Details</a>
+<h1>Our race tracks: </h1>
+
+<% for( let racetrack of racetracks ) { %>
+    <div class="card mt-3">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-fluid w-100" alt="" src="<%= racetrack.img %>">
             </div>
-        </li>
-    <% } %>
-</ol>
-<a href="/racetracks/new"></a>
+            <div class="col-md-8">
+                <h5 class="card-title" ><%= racetrack.name %></h5>
+                <p class="card-text"><%= racetrack.description %></p>
+                <p>
+                    <small class="text-location"><%= racetrack.location %></small>
+                </p>
+                <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>">Details</a>
+            </div>
+        </div>
+    </div>
+<% } %>
