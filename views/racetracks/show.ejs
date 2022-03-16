@@ -5,10 +5,8 @@
 <p><%= racetrack.description %></p>
 <p>Price per lap: <%= racetrack.pricePerLap %></p>
 
-<a href="/racetracks">Go back to the list of racetracks</a>
-<br>
-<a href="/racetracks/<%= racetrack.id %>/edit">Edit this racetrack</a>
-<br>
+<a class ="btn btn-primary mb-3" href="/racetracks/<%= racetrack.id %>/edit">Edit this racetrack</a>
+
 <form action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
-    <button>Delete this racetrack</button>
+    <button class="btn btn-primary mb-3">Delete this racetrack</button>
 </form>
