@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const catchAsync = require('./utils/catchAsync');
+const Joi = require('joi');
 
 // mongoose connection to mongoDB
 mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
@@ -38,7 +39,24 @@ app.get('/racetracks/new', (req, res) => {
 });
 
 app.post('/racetracks', catchAsync(async (req, res, next) => {
-    const newRacetrack = new Racetrack(req.body);
+    const racetrackSchema = Joi.object({
+        racetrack: Joi.object({
+            name: Joi.string().required(),
+            img: Joi.string().required,
+            pricePerLap: Joi.number().required().min(0),
+            description: Joi.string().required,
+            location: Joi.string().required()
+        }).required()
+    })
+
+    const result = racetrackSchema.validate(req.body);
+
+    if (result.error) {
+        const message = result.error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    }
+
+    const newRacetrack = new Racetrack(req.body.racetrack);
     newRacetrack.save();
     res.redirect(`/racetracks/${newRacetrack.id}`);
 }));
@@ -62,7 +80,7 @@ app.get('/racetracks/:id', catchAsync(async (req, res, next) => {
 
 app.patch('/racetracks/:id', catchAsync(async (req, res, next) => {
     const id = req.params.id;
-    const racetrack = await Racetrack.findByIdAndUpdate(id, req.body);
+    const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
     res.redirect(`/racetracks/${racetrack.id}`)
 }));
 
