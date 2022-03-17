@@ -7,7 +7,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const catchAsync = require('./utils/catchAsync');
-const Joi = require('joi');
+const { racetrackSchema } = require('./joischemas');
 
 // mongoose connection to mongoDB
 mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
@@ -27,16 +27,6 @@ app.use(methodOverride('_method'));
 
 // middleware to validate joi race track schema 
 const validateRaceTrack = (req, res, next) => {
-    const racetrackSchema = Joi.object({
-        racetrack: Joi.object({
-            name: Joi.string().required(),
-            img: Joi.string().required(),
-            pricePerLap: Joi.number().required().min(0),
-            description: Joi.string().required(),
-            location: Joi.string().required()
-        }).required()
-    })
-
     const result = racetrackSchema.validate(req.body);
 
     if (result.error) {
@@ -45,7 +35,6 @@ const validateRaceTrack = (req, res, next) => {
     } else {
         next();
     }
-
 };
 
 app.get('/', (req, res) => {
