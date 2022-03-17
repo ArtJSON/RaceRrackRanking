@@ -25,6 +25,29 @@ app.engine('ejs', ejsMate);
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
+// middleware to validate joi race track schema 
+const validateRaceTrack = (req, res, next) => {
+    const racetrackSchema = Joi.object({
+        racetrack: Joi.object({
+            name: Joi.string().required(),
+            img: Joi.string().required(),
+            pricePerLap: Joi.number().required().min(0),
+            description: Joi.string().required(),
+            location: Joi.string().required()
+        }).required()
+    })
+
+    const result = racetrackSchema.validate(req.body);
+
+    if (result.error) {
+        const msg = result.error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+
+};
+
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -38,24 +61,7 @@ app.get('/racetracks/new', (req, res) => {
     res.render('racetracks/new');
 });
 
-app.post('/racetracks', catchAsync(async (req, res, next) => {
-    const racetrackSchema = Joi.object({
-        racetrack: Joi.object({
-            name: Joi.string().required(),
-            img: Joi.string().required,
-            pricePerLap: Joi.number().required().min(0),
-            description: Joi.string().required,
-            location: Joi.string().required()
-        }).required()
-    })
-
-    const result = racetrackSchema.validate(req.body);
-
-    if (result.error) {
-        const message = result.error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    }
-
+app.post('/racetracks', validateRaceTrack, catchAsync(async (req, res, next) => {
     const newRacetrack = new Racetrack(req.body.racetrack);
     newRacetrack.save();
     res.redirect(`/racetracks/${newRacetrack.id}`);
@@ -78,7 +84,7 @@ app.get('/racetracks/:id', catchAsync(async (req, res, next) => {
     res.render('racetracks/show', { racetrack });
 }));
 
-app.patch('/racetracks/:id', catchAsync(async (req, res, next) => {
+app.patch('/racetracks/:id', validateRaceTrack, catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
     res.redirect(`/racetracks/${racetrack.id}`)
