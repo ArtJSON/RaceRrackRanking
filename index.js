@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const path = require('path');
 const Racetrack = require('./models/racetrack');
+const Review = require('./models/review');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
@@ -54,6 +55,18 @@ app.post('/racetracks', validateRaceTrack, catchAsync(async (req, res, next) => 
     const newRacetrack = new Racetrack(req.body.racetrack);
     newRacetrack.save();
     res.redirect(`/racetracks/${newRacetrack.id}`);
+}));
+
+app.post('/racetracks/:id/reviews', catchAsync(async (req, res, next) => {
+    const racetrack = await Racetrack.findById(req.params.id);
+    const newReview = new Review(req.body.review);
+
+    racetrack.reviews.push(newReview);
+
+    await newReview.save();
+    await racetrack.save();
+
+    res.redirect(`/racetracks/${racetrack.id}`);
 }));
 
 app.delete('/racetracks/:id', catchAsync(async (req, res, next) => {

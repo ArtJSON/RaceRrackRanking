@@ -10,3 +10,5 @@ const ReviewSchema = new Schema({
         max: 10
     }
 });
+
+module.exports = mongoose.model('Review', ReviewSchema);
