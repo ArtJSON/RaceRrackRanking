@@ -8,7 +8,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const catchAsync = require('./utils/catchAsync');
-const { racetrackSchema } = require('./joischemas');
+const { racetrackSchema, reviewSchema } = require('./joischemas');
 
 // mongoose connection to mongoDB
 mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
@@ -38,6 +38,18 @@ const validateRaceTrack = (req, res, next) => {
     }
 };
 
+// middleware to validate joi review schema 
+const validateReview = (req, res, next) => {
+    const result = reviewSchema.validate(req.body);
+
+    if (result.error) {
+        const msg = result.error.details.map(el => el.message).join(',');
+        throw new ExpressError(msg, 400);
+    } else {
+        next();
+    }
+};
+
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -57,7 +69,7 @@ app.post('/racetracks', validateRaceTrack, catchAsync(async (req, res, next) => 
     res.redirect(`/racetracks/${newRacetrack.id}`);
 }));
 
-app.post('/racetracks/:id/reviews', catchAsync(async (req, res, next) => {
+app.post('/racetracks/:id/reviews', validateReview, catchAsync(async (req, res, next) => {
     const racetrack = await Racetrack.findById(req.params.id);
     const newReview = new Review(req.body.review);
 

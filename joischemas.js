@@ -9,3 +9,10 @@ module.exports.racetrackSchema = Joi.object({
         location: Joi.string().required()
     }).required()
 });
+
+module.exports.reviewSchema = Joi.object({
+    review: Joi.object({
+        text: Joi.string().required(),
+        rating: Joi.number().required().min(0).max(10)
+    }).required()
+});
