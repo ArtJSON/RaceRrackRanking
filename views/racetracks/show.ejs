@@ -17,7 +17,20 @@
         <a class="card-link btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
     </div>
   </div>
-  <form action="racetracks/<%= racetrack.id %>/reviews" method="POST">
+
+  <% for( let review of racetrack.reviews ) { %>
+    <div class="my-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Review:</h5>
+          <p class="card-text"><%= review.text %></p>
+          <p class="card-text">Rating: <%= review.rating %></p>
+        </div>
+      </div>
+    </div>
+  <% } %>
+
+  <form action="/racetracks/<%= racetrack.id %>/reviews" method="POST">
     <h4 class="my-3">Leave a review of <%= racetrack.name %></h4>
     <div class="mb-3">
       <label class="form-label" for="text">Enter the review: </label>

@@ -82,7 +82,7 @@ app.get('/racetracks/:id/edit', catchAsync(async (req, res, next) => {
 
 app.get('/racetracks/:id', catchAsync(async (req, res, next) => {
     const id = req.params.id;
-    const racetrack = await Racetrack.findById(id);
+    const racetrack = await Racetrack.findById(id).populate('reviews'); 
     res.render('racetracks/show', { racetrack });
 }));
 
