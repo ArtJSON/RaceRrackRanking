@@ -1,4 +1,4 @@
-const joi = require('joi');
+const Joi = require('joi');
 
 module.exports.racetrackSchema = Joi.object({
     racetrack: Joi.object({
