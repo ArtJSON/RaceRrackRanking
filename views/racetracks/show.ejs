@@ -1,20 +1,39 @@
 <% layout('layouts/boilerplate') %> 
 <div class="my-3">
-    <div class="card">
-        <img src="<%= racetrack.img %>" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title"><%= racetrack.name %></h5>
-          <p class="card-text"><%= racetrack.description %></p>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item text-muted"><%= racetrack.location %></li>
-            <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
-          </ul>
-        <div class="card-body">
-            <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete this racetrack</button>
-            </form>
-            <a class="card-link btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
-        </div>
-      </div>
+  <div class="card">
+    <img src="<%= racetrack.img %>" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title"><%= racetrack.name %></h5>
+      <p class="card-text"><%= racetrack.description %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item text-muted"><%= racetrack.location %></li>
+        <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
+      </ul>
+    <div class="card-body">
+        <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete this racetrack</button>
+        </form>
+        <a class="card-link btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
+    </div>
+  </div>
+  <form action="">
+    <div class="mb-3">
+      <label class="form-label" for="text">Enter the review: </label>
+      <textarea class="form-control" type="text" id="text" name="review[text]" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="rating">Rating: <span id="output-rating"></span></label>
+      <input class="form-range" type="range" min="0" max="10" value="1" class="slider" id="rating" name="review[rating]">
+    </div>
+  </form>
 </div>
+<script>
+  const slider = document.getElementById("rating");
+  const output = document.getElementById("output-rating");
+  output.innerHTML = slider.value;
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+}
+</script>
