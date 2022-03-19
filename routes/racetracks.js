@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const Racetrack = require('../models/racetrack');
+const { racetrackSchema } = require('../joischemas');
 
 const express = require('express');
 const router = express.Router();
@@ -15,7 +16,6 @@ const validateRaceTrack = (req, res, next) => {
         next();
     }
 };
-
 
 router.get('/', async (req, res) => {
     const racetracks = await Racetrack.find({});
