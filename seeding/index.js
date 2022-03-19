@@ -1,6 +1,7 @@
 // helper file used to clear and repopulate the Racetrack database with some data
 const mongoose = require('mongoose');
 const Racetrack = require('../models/racetrack');
+const Review = require('../models/review');
 const sampleRacetracks = require('../seeding/racetrackSeeds');
 
 // mongoose connection to mongoDB
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
 const seedDB = async function() {
     // delete everything from the DB
     await Racetrack.deleteMany({});
+    await Review.deleteMany({});
 
     for (let racetrack of sampleRacetracks) {
         const tempRacetrack = new Racetrack(racetrack);
