@@ -10,6 +10,10 @@ const ExpressError = require('./utils/ExpressError');
 const catchAsync = require('./utils/catchAsync');
 const { racetrackSchema, reviewSchema } = require('./joischemas');
 
+const racetracks = require("./routes/racetracks");
+
+app.use('/racetracks', racetracks);
+
 // mongoose connection to mongoDB
 mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
     console.log("Racetack database connection open");
@@ -54,21 +58,6 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/racetracks', async (req, res) => {
-    const racetracks = await Racetrack.find({});
-    res.render('racetracks/index', { racetracks });
-});
-
-app.get('/racetracks/new', (req, res) => {
-    res.render('racetracks/new');
-});
-
-app.post('/racetracks', validateRaceTrack, catchAsync(async (req, res, next) => {
-    const newRacetrack = new Racetrack(req.body.racetrack);
-    newRacetrack.save();
-    res.redirect(`/racetracks/${newRacetrack.id}`);
-}));
-
 app.post('/racetracks/:id/reviews', validateReview, catchAsync(async (req, res, next) => {
     const racetrack = await Racetrack.findById(req.params.id);
     const newReview = new Review(req.body.review);
@@ -88,29 +77,6 @@ app.delete('/racetracks/:racetrack_id/reviews/:review_id', catchAsync(async (req
     await Review.findByIdAndDelete(review_id);
 
     res.redirect(`/racetracks/${racetrack_id}`);
-}));
-
-app.delete('/racetracks/:id', catchAsync(async (req, res, next) => {
-    const {id} = req.params;
-    await Racetrack.findByIdAndDelete(id);
-    res.redirect('/racetracks');
-}));
-
-app.get('/racetracks/:id/edit', catchAsync(async (req, res, next) => {
-    const racetrack = await Racetrack.findById(req.params.id);
-    res.render('racetracks/edit', { racetrack });
-}));
-
-app.get('/racetracks/:id', catchAsync(async (req, res, next) => {
-    const id = req.params.id;
-    const racetrack = await Racetrack.findById(id).populate('reviews'); 
-    res.render('racetracks/show', { racetrack });
-}));
-
-app.patch('/racetracks/:id', validateRaceTrack, catchAsync(async (req, res, next) => {
-    const id = req.params.id;
-    const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
-    res.redirect(`/racetracks/${racetrack.id}`)
 }));
 
 app.all('*', (req, res, next) => {
