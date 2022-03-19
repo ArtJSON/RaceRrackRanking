@@ -81,6 +81,15 @@ app.post('/racetracks/:id/reviews', validateReview, catchAsync(async (req, res, 
     res.redirect(`/racetracks/${racetrack.id}`);
 }));
 
+app.delete('/racetracks/:racetrack_id/reviews/:review_id', catchAsync(async (req, res, next) => {
+    const {racetrack_id, review_id} = req.params
+    
+    await Racetrack.findByIdAndUpdate(racetrack_id, {$pull: {reviews: review_id}});
+    await Review.findByIdAndDelete(review_id);
+
+    res.redirect(`/racetracks/${racetrack_id}`);
+}));
+
 app.delete('/racetracks/:id', catchAsync(async (req, res, next) => {
     const {id} = req.params;
     await Racetrack.findByIdAndDelete(id);
