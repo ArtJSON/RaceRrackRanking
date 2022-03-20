@@ -2,13 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const path = require('path');
-const Racetrack = require('./models/racetrack');
-const Review = require('./models/review');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
-const catchAsync = require('./utils/catchAsync');
-const { racetrackSchema, reviewSchema } = require('./joischemas');
+const session = require('express-session');
+
 
 const racetracks = require("./routes/racetracks");
 const reviews = require("./routes/reviews");
@@ -29,6 +27,19 @@ app.engine('ejs', ejsMate);
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// session configuration - needs to be changed in production
+const sessionConfig = {
+    secret: 'someSecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        // Date.now() return date in miliseconds
+        expires: Date.now() + 1000 * 60 * 60,
+        maxAge: 1000 * 60  * 60
+    }
+}
+app.use(session(sessionConfig));
 
 app.use('/racetracks/:id/reviews', reviews);
 app.use('/racetracks', racetracks);
