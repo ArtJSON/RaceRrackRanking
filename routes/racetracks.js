@@ -36,6 +36,7 @@ router.post('/', validateRaceTrack, catchAsync(async (req, res, next) => {
 router.delete('/:id', catchAsync(async (req, res, next) => {
     const {id} = req.params;
     await Racetrack.findByIdAndDelete(id);
+    req.flash('success', 'Successfully deleted the race track');
     res.redirect('/racetracks');
 }));
 
@@ -53,6 +54,7 @@ router.get('/:id', catchAsync(async (req, res, next) => {
 router.patch('/:id', validateRaceTrack, catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
+    req.flash('success', 'Successfully updated race track data');
     res.redirect(`/racetracks/${racetrack.id}`)
 }));
 
