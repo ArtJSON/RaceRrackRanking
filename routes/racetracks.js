@@ -29,6 +29,7 @@ router.get('/new', (req, res) => {
 router.post('/', validateRaceTrack, catchAsync(async (req, res, next) => {
     const newRacetrack = new Racetrack(req.body.racetrack);
     newRacetrack.save();
+    req.flash('success', 'Successfully created a new race track');
     res.redirect(`/racetracks/${newRacetrack.id}`);
 }));
 
