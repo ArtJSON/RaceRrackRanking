@@ -42,12 +42,21 @@ router.delete('/:id', catchAsync(async (req, res, next) => {
 
 router.get('/:id/edit', catchAsync(async (req, res, next) => {
     const racetrack = await Racetrack.findById(req.params.id);
+    if (!racetrack) {
+        req.flash('error', 'Cannot find this race track');
+        res.redirect('/racetracks');
+    }
+    res.
     res.render('racetracks/edit', { racetrack });
 }));
 
 router.get('/:id', catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const racetrack = await Racetrack.findById(id).populate('reviews'); 
+    if (!racetrack) {
+        req.flash('error', 'Cannot find this race track');
+        res.redirect('/racetracks');
+    }
     res.render('racetracks/show', { racetrack });
 }));
 
