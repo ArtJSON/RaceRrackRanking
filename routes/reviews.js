@@ -3,6 +3,7 @@ const ExpressError = require('../utils/ExpressError');
 const Racetrack = require('../models/racetrack');
 const Review = require('../models/review');
 const { reviewSchema } = require('../joischemas');
+const isLoggedIn = require('../utils/isLoggedIn');
 
 const express = require('express');
 const router = express.Router({mergeParams: true});
@@ -19,7 +20,7 @@ const validateReview = (req, res, next) => {
     }
 };
 
-router.post('/', validateReview, catchAsync(async (req, res, next) => {
+router.post('/', [isLoggedIn, validateReview], catchAsync(async (req, res, next) => {
     const racetrack = await Racetrack.findById(req.params.id);
     const newReview = new Review(req.body.review);
 
@@ -33,7 +34,7 @@ router.post('/', validateReview, catchAsync(async (req, res, next) => {
     res.redirect(`/racetracks/${racetrack.id}`);
 }));
 
-router.delete('/:review_id', catchAsync(async (req, res, next) => {
+router.delete('/:review_id', isLoggedIn, catchAsync(async (req, res, next) => {
     const {id, review_id} = req.params
     
     await Racetrack.findByIdAndUpdate(id, {$pull: {reviews: review_id}});

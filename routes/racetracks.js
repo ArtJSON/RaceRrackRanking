@@ -2,6 +2,7 @@ const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/ExpressError');
 const Racetrack = require('../models/racetrack');
 const { racetrackSchema } = require('../joischemas');
+const isLoggedIn = require('../utils/isLoggedIn');
 
 const express = require('express');
 const router = express.Router();
@@ -22,31 +23,30 @@ router.get('/', async (req, res) => {
     res.render('racetracks/index', { racetracks });
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('racetracks/new');
 });
 
-router.post('/', validateRaceTrack, catchAsync(async (req, res, next) => {
+router.post('/', [isLoggedIn, validateRaceTrack], catchAsync(async (req, res, next) => {
     const newRacetrack = new Racetrack(req.body.racetrack);
     newRacetrack.save();
     req.flash('success', 'Successfully created a new race track');
-    res.redirect(`/racetracks/${newRacetrack.id}`);
+    return res.redirect(`/racetracks/${newRacetrack.id}`);
 }));
 
-router.delete('/:id', catchAsync(async (req, res, next) => {
+router.delete('/:id', isLoggedIn, catchAsync(async (req, res, next) => {
     const {id} = req.params;
     await Racetrack.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted the race track');
     res.redirect('/racetracks');
 }));
 
-router.get('/:id/edit', catchAsync(async (req, res, next) => {
+router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res, next) => {
     const racetrack = await Racetrack.findById(req.params.id);
     if (!racetrack) {
         req.flash('error', 'Cannot find this race track');
         res.redirect('/racetracks');
     }
-    res.
     res.render('racetracks/edit', { racetrack });
 }));
 
@@ -60,7 +60,7 @@ router.get('/:id', catchAsync(async (req, res, next) => {
     res.render('racetracks/show', { racetrack });
 }));
 
-router.patch('/:id', validateRaceTrack, catchAsync(async (req, res, next) => {
+router.patch('/:id', [isLoggedIn, validateRaceTrack], catchAsync(async (req, res, next) => {
     const id = req.params.id;
     const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
     req.flash('success', 'Successfully updated race track data');
