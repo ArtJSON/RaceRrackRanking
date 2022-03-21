@@ -13,6 +13,7 @@ const User = require('./models/user');
 
 const racetracks = require("./routes/racetracks");
 const reviews = require("./routes/reviews");
+const users = require("./routes/users");
 
 // mongoose connection to mongoDB
 mongoose.connect('mongodb://localhost:27017/racetrackDB').then(() => {
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 
 app.use('/racetracks/:id/reviews', reviews);
 app.use('/racetracks', racetracks);
+app.use('/', users);
 
 app.get('/', (req, res) => {
     res.render('index');
