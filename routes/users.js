@@ -31,4 +31,10 @@ router.post('/login', passport.authenticate('local', {failureFlash: true, failur
    res.redirect('/racetracks');
 });
 
+router.get('/logout',(req, res) => {
+    req.logout();
+    req.flash('success', "Succesfully logged out");
+    res.redirect('/racetracks');
+});
+
 module.exports = router;
