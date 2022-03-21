@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const catchAsync = require('../utils/catchAsync');
 const router = express.Router({mergeParams: true});
+const passport = require('passport');
 
 router.get('/register', (req, res) => {
     res.render('users/register');
@@ -19,5 +20,15 @@ router.post('/register', catchAsync(async (req, res) => {
         res.redirect('/register');
     }
 }));
+
+router.get('/login',(req, res) => {
+    res.render('users/login')
+});
+
+// create flash if failure, redirect back to login if failure
+router.post('/login', passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), (req, res) => {
+   req.flash('success', 'Succesfully logged in');
+   res.redirect('/racetracks');
+});
 
 module.exports = router;
