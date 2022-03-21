@@ -13,8 +13,15 @@ router.post('/register', catchAsync(async (req, res) => {
         const {email, username, password} = req.body;
         const user = new User({email, username});
         const registeredUser = await User.register(user, password);
-        req.flash('success', 'Created new account');
-        res.redirect('/racetracks');
+        // automatically log in after signing up
+        req.login(user, err => {
+            if (err) {
+                return next();
+            } else {
+                req.flash('success', 'Created new account');
+                res.redirect('/racetracks');
+            }
+        });
     } catch (err) {
         req.flash('error', err.message);
         res.redirect('/register');
