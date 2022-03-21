@@ -11,9 +11,12 @@
           <a class="nav-link" href="/racetracks/new">New racetrack</a>
         </div>
         <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/login">Login</a>
-          <a class="nav-link" href="/register">Logout</a>
-          <a class="nav-link" href="/logout">Sign up</a>
+          <% if (!currentUser) { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Sign up</a>
+          <% } else {%>
+            <a class="nav-link" href="/logout">Log out</a>
+          <% } %>
         </div>
       </div>
     </div>
