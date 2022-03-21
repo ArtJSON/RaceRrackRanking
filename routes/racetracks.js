@@ -29,6 +29,7 @@ router.get('/new', isLoggedIn, (req, res) => {
 
 router.post('/', [isLoggedIn, validateRaceTrack], catchAsync(async (req, res, next) => {
     const newRacetrack = new Racetrack(req.body.racetrack);
+    newRacetrack.author = req.user._id;
     newRacetrack.save();
     req.flash('success', 'Successfully created a new race track');
     return res.redirect(`/racetracks/${newRacetrack.id}`);
@@ -52,7 +53,7 @@ router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res, next) => {
 
 router.get('/:id', catchAsync(async (req, res, next) => {
     const id = req.params.id;
-    const racetrack = await Racetrack.findById(id).populate('reviews'); 
+    const racetrack = await Racetrack.findById(id).populate('reviews').populate('author'); 
     if (!racetrack) {
         req.flash('error', 'Cannot find this race track');
         res.redirect('/racetracks');

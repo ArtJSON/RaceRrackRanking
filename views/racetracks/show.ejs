@@ -9,14 +9,17 @@
       </div>
       <ul class="list-group list-group-flush">
           <li class="list-group-item text-muted"><%= racetrack.location %></li>
+          <li class="list-group-item">Created by <%= racetrack.author.username %></li>
           <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
         </ul>
-      <div class="card-body">
-          <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
-              <button class="btn btn-danger">Delete this racetrack</button>
-          </form>
-          <a class="card-link btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
-      </div>
+        <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
+          <div class="card-body">
+            <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete this racetrack</button>
+            </form>
+            <a class="card-link btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
+        </div>  
+        <% } %>
     </div>
   </div>
   <div class="col-6">

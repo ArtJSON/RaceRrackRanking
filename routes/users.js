@@ -35,7 +35,7 @@ router.get('/login',(req, res) => {
 // create flash if failure, redirect back to login if failure
 router.post('/login', passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), (req, res) => {
    req.flash('success', 'Succesfully logged in');
-   let redirectUrl = req.session.returnTo || '/campground';
+   let redirectUrl = req.session.returnTo || '/racetracks';
    if (redirectUrl.includes("reviews")) {
        redirectUrl = redirectUrl.replace('reviews','');
    }
