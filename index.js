@@ -6,7 +6,10 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
-const flash = require('connect-flash')
+const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
 
 const racetracks = require("./routes/racetracks");
 const reviews = require("./routes/reviews");
@@ -42,6 +45,14 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+// passport config
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 //
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
@@ -67,7 +78,6 @@ app.use((err, req, res, next) => {
     }
     res.status(statusCode).render('error', { err });
 });
-
 
 app.listen(3333, () => {
     console.log('Listening on port 3333');
