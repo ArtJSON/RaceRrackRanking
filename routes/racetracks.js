@@ -40,6 +40,7 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res, next) 
 
 router.get('/:id', catchAsync(async (req, res, next) => {
     const { id } = req.params;
+    // nested populate to populate reviews inside of racetrack
     const racetrack = await Racetrack.findById(id).populate({
         path: 'reviews',
         populate: {

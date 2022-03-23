@@ -47,7 +47,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Rating: <%= review.rating %></h5>
-            <p class="card-text">Review: <%= review.text %></p>
+            <p class="card-text"><%= review.text %></p>
             <% if( currentUser && review.author.equals(currentUser._id)) { %>
             <form action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
               <button class="btn btn-sm btn-danger">Delete review</button>
