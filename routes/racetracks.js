@@ -40,7 +40,12 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res, next) 
 
 router.get('/:id', catchAsync(async (req, res, next) => {
     const { id } = req.params;
-    const racetrack = await Racetrack.findById(id).populate('reviews').populate('author'); 
+    const racetrack = await Racetrack.findById(id).populate({
+        path: 'reviews',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author'); 
     if (!racetrack) {
         req.flash('error', 'Cannot find this race track');
         res.redirect('/racetracks');

@@ -23,6 +23,7 @@
     </div>
   </div>
   <div class="col-6">
+    <% if (currentUser) { %>
     <form class="validated-form" action="/racetracks/<%= racetrack.id %>/reviews" method="POST" novalidate>
       <h4 class="my-3">Leave a review of <%= racetrack.name %></h4>
       <div class="mb-3">
@@ -35,15 +36,24 @@
       </div>
       <button class="btn btn-success">Submit review</button>
     </form>
+    <% } %>
+    <% if (racetrack.reviews.length == 0) { %>
+     <p class="my-5 text-muted text-center">No reviews</p>
+    <% } else { %>
+     <h4 class="my-3">Reviews: </h4>
+    <% } %>
     <% for( let review of racetrack.reviews ) { %>
       <div class="my-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Rating: <%= review.rating %></h5>
             <p class="card-text">Review: <%= review.text %></p>
+            <% if( currentUser && review.author.equals(currentUser._id)) { %>
             <form action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
               <button class="btn btn-sm btn-danger">Delete review</button>
             </form>
+            <% } %>
+            <p class="card-text text-muted">Review by <%= review.author.username %> </p>
           </div>
         </div>
       </div>
