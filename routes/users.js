@@ -5,14 +5,13 @@ const router = express.Router({mergeParams: true});
 const passport = require('passport');
 const userController = require('../controllers/users');
 
-router.get('/register', userController.showRegisterForm);
+router.route('/register')
+    .get(userController.showRegisterForm)
+    .post(catchAsync(userController.register));
 
-router.post('/register', catchAsync(userController.register));
-
-router.get('/login', userController.showLoginForm);
-
-// create flash if failure, redirect back to login if failure
-router.post('/login', passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), userController.logIn);
+router.route('/login')
+    .get(userController.showLoginForm)
+    .post(passport.authenticate('local', {failureFlash: true, failureRedirect: '/login'}), userController.logIn);
 
 router.get('/logout', userController.logout);
 

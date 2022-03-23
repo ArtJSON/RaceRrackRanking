@@ -1,5 +1,4 @@
 const User = require('../models/user');
-const express = require('express');
 
 module.exports.register = async (req, res) => {
     try {

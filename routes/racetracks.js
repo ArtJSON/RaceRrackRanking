@@ -6,18 +6,17 @@ const racetrackController = require('../controllers/racetracks');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', catchAsync(racetrackController.index));
+router.route('/')
+    .get(catchAsync(racetrackController.index))
+    .post(isLoggedIn, validateRaceTrack, catchAsync(racetrackController.createRacetrack));
 
 router.get('/new', isLoggedIn, racetrackController.renderNewForm);
 
-router.post('/', isLoggedIn, validateRaceTrack, catchAsync(racetrackController.createRacetrack));
-
-router.delete('/:id', isLoggedIn, isAuthor, catchAsync(racetrackController.deleteRacetrack));
-
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(racetrackController.renderEditForm));
 
-router.get('/:id', catchAsync(racetrackController.renderShowPage));
-
-router.patch('/:id', isLoggedIn, isAuthor, validateRaceTrack, catchAsync(racetrackController.updateRacetrack));
+router.route('/:id')
+    .get(catchAsync(racetrackController.renderShowPage))
+    .patch(isLoggedIn, isAuthor, validateRaceTrack, catchAsync(racetrackController.updateRacetrack))
+    .delete(isLoggedIn, isAuthor, catchAsync(racetrackController.deleteRacetrack));
 
 module.exports = router;
