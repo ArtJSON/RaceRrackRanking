@@ -2,7 +2,7 @@
 <div class="row">
     <h1 class="text-center">Create new race track</h1>
     <div class="col-6 offset-3">
-        <form class="validated-form" action="/racetracks" method="POST" novalidate>
+        <form class="validated-form" action="/racetracks" method="POST" novalidate enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label" for="name">Enter the name: </label>
                 <input class="form-control" type="text" id="name" name="racetrack[name]" required>
@@ -27,8 +27,8 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="img">Enter the image url: </label>
-                <input class="form-control" type="text" id="img" name="racetrack[img]" required>
+                <label class="form-label" for="img">Enter the images: </label>
+                <input class="form-control" type="file" id="img" name="racetrack[img]" required multiple>
             </div>
             <div class="mb-3">
                 <button class="btn btn-success">Add racetrack</button>

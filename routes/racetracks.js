@@ -3,12 +3,16 @@ const Racetrack = require('../models/racetrack');
 const { isLoggedIn, validateRaceTrack, isAuthor } = require('../utils/middleware');
 const racetrackController = require('../controllers/racetracks');
 
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 const express = require('express');
 const router = express.Router();
 
 router.route('/')
     .get(catchAsync(racetrackController.index))
-    .post(isLoggedIn, validateRaceTrack, catchAsync(racetrackController.createRacetrack));
+    //.post(isLoggedIn, validateRaceTrack, catchAsync(racetrackController.createRacetrack));
+    .post(upload.array('racetrack[img]'), (req, res) => {res.send(req.files)});
 
 router.get('/new', isLoggedIn, racetrackController.renderNewForm);
 
