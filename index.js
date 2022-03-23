@@ -62,9 +62,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/racetracks/:id/reviews', reviews);
-app.use('/racetracks', racetracks);
+
+
 app.use('/', users);
+app.use('/racetracks', racetracks);
+app.use('/racetracks/:id/reviews', reviews);
 
 app.get('/', (req, res) => {
     res.render('index');
