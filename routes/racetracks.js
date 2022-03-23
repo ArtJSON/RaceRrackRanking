@@ -2,9 +2,9 @@ const catchAsync = require('../utils/catchAsync');
 const Racetrack = require('../models/racetrack');
 const { isLoggedIn, validateRaceTrack, isAuthor } = require('../utils/middleware');
 const racetrackController = require('../controllers/racetracks');
-
+const {storage} = require('../cloudinary');
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const upload = multer({ storage: storage })
 
 const express = require('express');
 const router = express.Router();
