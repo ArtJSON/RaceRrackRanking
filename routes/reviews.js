@@ -3,7 +3,7 @@ const ExpressError = require('../utils/ExpressError');
 const Racetrack = require('../models/racetrack');
 const Review = require('../models/review');
 const { reviewSchema } = require('../joischemas');
-const isLoggedIn = require('../utils/isLoggedIn');
+const { isLoggedIn } = require('../utils/middleware');
 
 const express = require('express');
 const router = express.Router({mergeParams: true});

@@ -1,32 +1,9 @@
 const catchAsync = require('../utils/catchAsync');
-const ExpressError = require('../utils/ExpressError');
 const Racetrack = require('../models/racetrack');
-const { racetrackSchema } = require('../joischemas');
-const isLoggedIn = require('../utils/isLoggedIn');
+const { isLoggedIn, validateRaceTrack, isAuthor } = require('../utils/middleware');
 
 const express = require('express');
 const router = express.Router();
-
-const validateRaceTrack = (req, res, next) => {
-    const result = racetrackSchema.validate(req.body);
-
-    if (result.error) {
-        const msg = result.error.details.map(el => el.message).join(',');
-        throw new ExpressError(msg, 400);
-    } else {
-        next();
-    }
-};
-
-const isAuthor = async (req, res, next) => {
-    const { id } = req.params;
-    const racetrack = await Racetrack.findById(id);
-    if (!racetrack.author.equals(req.user_id)) {
-        req.flash('error', 'You do not have permission to do that');
-        return res.redirect(`/racetracks/${id}`);
-    }
-    next();
-};
 
 router.get('/', async (req, res) => {
     const racetracks = await Racetrack.find({});
