@@ -62,8 +62,13 @@ router.get('/:id', catchAsync(async (req, res, next) => {
 }));
 
 router.patch('/:id', [isLoggedIn, validateRaceTrack], catchAsync(async (req, res, next) => {
-    const id = req.params.id;
-    const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
+    const { id } = req.params;
+    const racetrack = await Racetrack.findById(id);
+    if (!racetrack.author.equals(req.user_id)) {
+        req.flash('error', 'You do not have permission to do that');
+        return res.redirect(`/racetracks/${id}`);
+    }
+    const track = await Racetrack.findById(id, req.body.racetrack);
     req.flash('success', 'Successfully updated race track data');
     res.redirect(`/racetracks/${racetrack.id}`)
 }));
