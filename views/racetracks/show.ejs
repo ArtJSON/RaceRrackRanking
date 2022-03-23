@@ -1,4 +1,7 @@
 <% layout('layouts/boilerplate') %>
+
+<link rel="stylesheet" href="/stylesheets/starability.css">
+
 <div class="row">
   <div class="col-6 my-3">
     <div class="card">
@@ -32,7 +35,19 @@
       </div>
       <div class="mb-3">
         <label class="form-label" for="rating">Rating: <span id="output-rating"></span></label>
-        <input class="form-range" type="range" min="0" max="10" value="5" class="slider" id="rating" name="review[rating]" >
+        <fieldset class="starability-basic">
+          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+          <input type="radio" id="second-rate1" name="review[rating]" value="1" />
+          <label for="second-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="second-rate2" name="review[rating]" value="2" />
+          <label for="second-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="second-rate3" name="review[rating]" value="3" />
+          <label for="second-rate3" title="Average">3 stars</label>
+          <input type="radio" id="second-rate4" name="review[rating]" value="4" />
+          <label for="second-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="second-rate5" name="review[rating]" value="5" />
+          <label for="second-rate5" title="Amazing">5 stars</label>
+        </fieldset>
       </div>
       <button class="btn btn-success">Submit review</button>
     </form>
@@ -46,7 +61,9 @@
       <div class="my-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Rating: <%= review.rating %></h5>
+            <p class="starability-result" data-rating="<%=review.rating%>">
+              Rated: <%= review.rating %> stars
+            </p>
             <p class="card-text"><%= review.text %></p>
             <p class="card-text text-muted">By <%= review.author.username %> </p>
             <% if( currentUser && review.author.equals(currentUser._id)) { %>
