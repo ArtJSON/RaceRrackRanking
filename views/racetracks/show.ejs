@@ -5,7 +5,25 @@
 <div class="row">
   <div class="col-6 my-3">
     <div class="card">
-      <img src="<%= racetrack.img %>" class="card-img-top">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% let i = 0; for( let img of racetrack.img) { %>
+            <div class="carousel-item <% if (i++ == 0) { %>active<% } %>">
+              <img class="d-block w-100" src="<%= img.url %> " alt="Second slide">
+            </div>
+          <% } %>
+        </div>
+        <% if (racetrack.img.length > 1) { %>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button> 
+        <% } %>
+      </div>
       <div class="card-body">
         <h5 class="card-title"><%= racetrack.name %></h5>
         <p class="card-text"><%= racetrack.description %></p>

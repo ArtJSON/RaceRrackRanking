@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 
 const RacetrackSchema = new Schema({
     name: String,
-    img: String,
+    img: [
+        {
+            url: String,
+            filename: String
+        }
+    ],
     pricePerLap: {
         type: Number,
         min: 0

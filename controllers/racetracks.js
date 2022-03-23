@@ -11,7 +11,9 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createRacetrack = async (req, res, next) => {
     const newRacetrack = new Racetrack(req.body.racetrack);
+    console.log(req.files);
     newRacetrack.author = req.user._id;
+    newRacetrack.img = req.files.map(f => ({ url: f.path, filename: f.filename }));
     newRacetrack.save();
     req.flash('success', 'Successfully created a new race track');
     return res.redirect(`/racetracks/${newRacetrack.id}`);

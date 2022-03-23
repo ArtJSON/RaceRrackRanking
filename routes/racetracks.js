@@ -11,9 +11,8 @@ const router = express.Router();
 
 router.route('/')
     .get(catchAsync(racetrackController.index))
-    //.post(isLoggedIn, validateRaceTrack, catchAsync(racetrackController.createRacetrack));
-    .post(upload.array('racetrack[img]'), (req, res) => {res.send(req.files)});
-
+    .post(isLoggedIn, upload.array('img'), validateRaceTrack, catchAsync(racetrackController.createRacetrack));
+    
 router.get('/new', isLoggedIn, racetrackController.renderNewForm);
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(racetrackController.renderEditForm));
