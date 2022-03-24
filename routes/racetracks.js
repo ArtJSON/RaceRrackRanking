@@ -19,7 +19,8 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(racetrackController.ren
 
 router.route('/:id/photos')
     .get(isLoggedIn, isAuthor, catchAsync(racetrackController.renderAddPhotosForm))
-    .post(isLoggedIn, isAuthor, upload.array('img'), catchAsync(racetrackController.addPhotos));
+    .post(isLoggedIn, isAuthor, upload.array('img'), catchAsync(racetrackController.addPhotos))
+    .delete(isLoggedIn, isAuthor, catchAsync(racetrackController.removePhotos));
 
 router.route('/:id')
     .get(catchAsync(racetrackController.renderShowPage))

@@ -1,4 +1,5 @@
 const Racetrack = require('../models/racetrack');
+const { cloudinary }  = require('../cloudinary')
 
 module.exports.index = async (req, res) => {
     const racetracks = await Racetrack.find({});
@@ -12,7 +13,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.renderAddPhotosForm = async (req, res, next) => {
     const { id } = req.params;
     const racetrack = await Racetrack.findById(id);
-    res.render('racetracks/addPhotos', { racetrack });
+    res.render('racetracks/managePhotos', { racetrack });
 }
 
 module.exports.addPhotos = async (req, res, next)=> {
@@ -23,6 +24,21 @@ module.exports.addPhotos = async (req, res, next)=> {
     racetrack.img.push(...images);
     await racetrack.save();
 
+    return res.redirect(`/racetracks/${racetrack.id}`);
+}
+
+module.exports.removePhotos = async (req, res, next)=> {
+    const { id } = req.params;
+    
+    const racetrack = await Racetrack.findById(id);
+    const imageNames = req.body.imageNames;
+    if (imageNames) {
+        for(let filename of imageNames) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await racetrack.updateOne({$pull: {img: {filename: {$in: imageNames}}}});
+        await racetrack.save();
+    }
     return res.redirect(`/racetracks/${racetrack.id}`);
 }
 
