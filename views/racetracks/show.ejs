@@ -38,8 +38,12 @@
             <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
                 <button class="btn btn-danger">Delete this racetrack</button>
             </form>
-            <a class="card-link btn btn-primary d-inline" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
-            <a class="card-link btn btn-primary d-inline" href="/racetracks/<%= racetrack.id %>/photos">Add more photos</a>
+            <form class="d-inline" action="/racetracks/<%= racetrack.id %>/edit">
+                <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
+            </form>
+            <form class="d-inline" action="/racetracks/<%= racetrack.id %>/photos">
+              <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/photos">Add more photos</a>
+            </form>        
         </div>  
         <% } %>
     </div>
