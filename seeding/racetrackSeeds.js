@@ -3,63 +3,90 @@ const racetrack = require("../models/racetrack");
 module.exports = [{
     name: 'Tor Poznan',
     author: '6239046f57e4341ad279b271',
-    img: 'https://drivingexperience.pl/wp-content/uploads/2016/04/driving_experience-181.jpg',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/iwpwsgz7zrhkzaihtls2.jpg',
+        filename: 'iwpwsgz7zrhkzaihtls2'
+    },
     pricePerLap: 120.99,
     description: 'Description about Poznan',
     location: 'Poznan, Poland',
 }, {
     name: 'Tor Lodz',
     author: '6239046f57e4341ad279b271',
-    img: 'https://tor-lodz.pl/processed/uploads/articles/phppMhDnh_5ba6d2992e7678_70096698.$thumb,900,600.jpg',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/jpf2mlqzv6gc9qioul2w.jpg',
+        filename: 'jpf2mlqzv6gc9qioul2w'
+    },
     pricePerLap: 79.99,
     description: 'Description about Tor Lodz',
     location: 'Lodz, Poland',
 }, {
     name: 'Indianapolis Motor Speedway',
     author: '6239046f57e4341ad279b271',
-    img: 'https://ftw.usatoday.com/wp-content/uploads/sites/90/2020/08/usp-indycar_-indianapolis-500-speedway-aerials.jpg?w=1000&h=600&crop=1',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/yusaocjufovpns3mjvuh.webp',
+        filename: 'yusaocjufovpns3mjvuh'
+    },
     pricePerLap: 200,
     description: 'Description about Indianapolis Motor Speedway',
     location: 'Indianapolis, USA', 
 }, {
     name: 'Circuit of the Americas',
     author: '6239046f57e4341ad279b271',
-    img: 'https://preview.redd.it/z8h105fru5i71.png?width=1600&format=png&auto=webp&s=bbf1ee0ae68dc4536c466e20856e8bd903d18c81',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/bg7ibrl8ei4q9rcxouio.jpg',
+        filename: 'bg7ibrl8ei4q9rcxouio'
+    },
     pricePerLap: 300,
     description: 'Description about Circuit of the Americas',
     location: 'Austin, USA',
 }, {
     name: 'Circuit de Spa-Francorchamps',
     author: '6239046f57e4341ad279b271',
-    img: 'https://static.ostadium.com/galleries/circuit-de-spa-francorchamps-illus.jpg',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/matqbr8oakvnnrmqg7tq.jpg',
+        filename: 'matqbr8oakvnnrmqg7tq'
+    },
     pricePerLap: 250,
     description: 'Description about Circuit de Spa-Francorchamps',
     location: 'Stavelot, Belgium',
 }, {
     name: 'Lime Rock Park',
     author: '6239046f57e4341ad279b271',
-    img: 'https://cdn.motorsportmagazine.com/wp-content/uploads/2021/06/17102322/Lime-Rock-park-1.jpg',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/nrsnuhfuog2yh5dkdvny.jpg',
+        filename: 'nrsnuhfuog2yh5dkdvny'
+    },
     pricePerLap: 110,
     description: 'Description about Lime Rock Park',
     location: 'Lakeville, USA',
 }, {
     name: 'Watkins Glen',
     author: '6239046f57e4341ad279b271',
-    img: 'https://www.indycar.com/-/media/IndyCar/News/Standard/2016/05/05-13-Watkins-Glen-Aerial-Shot.jpg?h=564&la=en&w=940',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/fbwbplcug2vsmosic4dp.jpg',
+        filename: 'fbwbplcug2vsmosic4dp'
+    },
     pricePerLap: 100,
     description: 'Description about Watkins Glen',
     location: 'Watkins Glen, USA',
 }, {
     name: 'Virginia International Raceway',
     author: '6239046f57e4341ad279b271',
-    img: 'https://virnow.com/wp-content/uploads/2014/06/slider-2-1200x660-1.jpg',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/ffcxkyftli4bh6mho02a.jpg',
+        filename: 'ffcxkyftli4bh6mho02a'
+    },
     pricePerLap: 80,
     description: 'Description about Virginia International Raceway',
     location: 'Alton, USA',
 }, {
     name: 'Sonoma Raceway',
     author: '6239046f57e4341ad279b271',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Infineon_Raceway.tif/lossy-page1-1200px-Infineon_Raceway.tif.jpg',
+    img: {
+        url: 'https://res.cloudinary.com/dixadtjff/image/upload/v1648086991/racetracks/wwdgz0ye9bpekt0hi74l.jpg',
+        filename: 'wwdgz0ye9bpekt0hi74l'
+    },
     pricePerLap: 170,
     description: 'Description about Sonoma Raceway',
     location: 'Sonoma, USA',
