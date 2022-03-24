@@ -17,6 +17,10 @@ router.get('/new', isLoggedIn, racetrackController.renderNewForm);
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(racetrackController.renderEditForm));
 
+router.route('/:id/photos')
+    .get(isLoggedIn, isAuthor, catchAsync(racetrackController.renderAddPhotosForm))
+    .post(isLoggedIn, isAuthor, upload.array('img'), catchAsync(racetrackController.addPhotos));
+
 router.route('/:id')
     .get(catchAsync(racetrackController.renderShowPage))
     .patch(isLoggedIn, isAuthor, validateRaceTrack, catchAsync(racetrackController.updateRacetrack))

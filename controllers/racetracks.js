@@ -9,9 +9,25 @@ module.exports.renderNewForm = (req, res) => {
     res.render('racetracks/new');
 }
 
+module.exports.renderAddPhotosForm = async (req, res, next) => {
+    const { id } = req.params;
+    const racetrack = await Racetrack.findById(id);
+    res.render('racetracks/addPhotos', { racetrack });
+}
+
+module.exports.addPhotos = async (req, res, next)=> {
+    const { id } = req.params;
+    
+    const racetrack = await Racetrack.findById(id);
+    const images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    racetrack.img.push(...images);
+    await racetrack.save();
+
+    return res.redirect(`/racetracks/${racetrack.id}`);
+}
+
 module.exports.createRacetrack = async (req, res, next) => {
     const newRacetrack = new Racetrack(req.body.racetrack);
-    console.log(req.files);
     newRacetrack.author = req.user._id;
     newRacetrack.img = req.files.map(f => ({ url: f.path, filename: f.filename }));
     newRacetrack.save();
