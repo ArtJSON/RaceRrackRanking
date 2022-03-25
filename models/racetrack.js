@@ -2,14 +2,18 @@ const mongoose = require('mongoose');
 const Review = require('./review');
 const Schema = mongoose.Schema;
 
+const imgSchema = new Schema({
+    url: String,
+    filename: String
+});
+
+imgSchema.virtual('thumbnail').get( function() {
+    return this.url.replace('/upload', '/upload/w_200');
+})
+
 const RacetrackSchema = new Schema({
     name: String,
-    img: [
-        {
-            url: String,
-            filename: String
-        }
-    ],
+    img: [imgSchema],
     pricePerLap: {
         type: Number,
         min: 0
