@@ -32,7 +32,7 @@ const RacetrackSchema = new Schema({
           type: [Number],
           required: true
         }
-      }
+    },
     location: String,
     author: {
         type: Schema.Types.ObjectId,
