@@ -1,4 +1,9 @@
 const Racetrack = require('../models/racetrack');
+const mapboxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapboxToken = process.env.MAPBOX_TOKEN;
+
+const geocoder = mapboxGeocoding({accessToken: mapboxToken});
+
 const { cloudinary }  = require('../cloudinary')
 
 module.exports.index = async (req, res) => {
@@ -43,9 +48,14 @@ module.exports.removePhotos = async (req, res, next)=> {
 }
 
 module.exports.createRacetrack = async (req, res, next) => {
+    const geodata = await geocoder.forwardGeocode({
+        query: req.body.racetrack.location,
+        limit: 1
+    }).send();
     const newRacetrack = new Racetrack(req.body.racetrack);
     newRacetrack.author = req.user._id;
     newRacetrack.img = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    newRacetrack.geometry = geodata.body.features[0].center;
     newRacetrack.save();
     req.flash('success', 'Successfully created a new race track');
     return res.redirect(`/racetracks/${newRacetrack.id}`);

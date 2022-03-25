@@ -10,6 +10,9 @@ const imgSchema = new Schema({
 imgSchema.virtual('thumbnail').get( function() {
     return this.url.replace('/upload', '/upload/w_200');
 })
+imgSchema.virtual('carousel').get( function() {
+    return this.url.replace('/upload', '/upload/c_fill,h_600,w_800');
+})
 
 const RacetrackSchema = new Schema({
     name: String,
@@ -19,6 +22,17 @@ const RacetrackSchema = new Schema({
         min: 0
     },
     description: String,
+    geometry: {
+        type: {
+          type: String, 
+          enum: ['Point'],
+          required: true
+        },
+        coordinates: {
+          type: [Number],
+          required: true
+        }
+      }
     location: String,
     author: {
         type: Schema.Types.ObjectId,
