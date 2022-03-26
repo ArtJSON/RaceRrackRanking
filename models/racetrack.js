@@ -46,6 +46,21 @@ const RacetrackSchema = new Schema({
     ]
 });
 
+RacetrackSchema.methods.getDistance = function(lon, lat) {
+    const R = 6371e3; // metres
+    const φ1 = lat * Math.PI/180; // φ, λ in radians
+    const φ2 = this.geometry.coordinates[1] * Math.PI/180;
+    const Δφ = (this.geometry.coordinates[1]-lat) * Math.PI/180;
+    const Δλ = (this.geometry.coordinates[0]-lon) * Math.PI/180;
+    
+    const a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+              Math.cos(φ1) * Math.cos(φ2) *
+              Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    
+    return R * c; // in metres
+};
+
 // middleware to delete all reviews of a removed racetrack
 RacetrackSchema.post('findOneAndDelete', async function(doc) {
     if (doc) {

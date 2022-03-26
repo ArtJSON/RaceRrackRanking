@@ -67,8 +67,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-
 app.use('/', users);
 app.use('/racetracks', racetracks);
 app.use('/racetracks/:id/reviews', reviews);
