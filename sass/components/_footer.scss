@@ -1,0 +1,10 @@
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $color-primary-grey;
+  color: $color-white-dim;
+  height: 2rem;
+  position: relative;
+}

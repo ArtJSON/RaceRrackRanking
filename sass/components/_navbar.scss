@@ -1,10 +1,12 @@
 .navbar {
-  height: auto;
+  height: 3.5rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   &-dark {
-    background-color: $color-grey-dark;
+    background-color: $color-primary-grey;
   }
 
   .navbar-links {
@@ -20,7 +22,7 @@
   .navbar-content-sub {
     display: block;
     text-align: center;
-    padding: 1rem 1rem;
+    padding: 1rem 0.5rem;
     text-decoration: none;
   }
 
@@ -33,23 +35,17 @@
   .navbar-content-sub {
     font-size: 1rem;
     color: $color-white-dim;
-  }
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
-  + * {
-    margin-top: 3rem;
+    &:hover {
+      color: lighten($color-white-dim, 15);
+    }
   }
 }
 
 @media (max-width: 650px) {
   .navbar {
     flex-direction: column;
+    height: 10rem;
 
     .push {
       margin-left: 0;
@@ -62,6 +58,11 @@
       .navbar-content-sub {
         padding: 0.5rem 1rem;
       }
+    }
+
+    .account {
+      display: flex;
+      align-items: flex-start;
     }
   }
 }
