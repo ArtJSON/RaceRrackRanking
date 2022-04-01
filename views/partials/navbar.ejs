@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-dark">
+    <h1><a class="navbar-title" href="/">Race track ranking</a></h1>
     <ul class="navbar-links">
-      <li><a class="navbar-content-main" href="/">Race track ranking</a></li>
       <li>
         <a class="navbar-content-sub" href="/racetracks"
           >Discover race tracks</a
@@ -11,7 +11,7 @@
         <a class="navbar-content-sub" href="/racetracks/new">New racetrack</a>
       </li>
     </ul>
-    <ul class="navbar-links">
+    <ul class="navbar-links push">
       <% if (!currentUser) { %>
       <li><a class="navbar-content-sub" href="/login">Login</a></li>
       <li><a class="navbar-content-sub" href="/register">Sign up</a></li>
@@ -21,22 +21,3 @@
     </ul>
   </nav>
 </header>
-<div class="container-fluid">
-  <a class="navbar-brand" href="#">Race track ranking</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link" href="/">Home</a>
-    </div>
-  </div>
-</div>

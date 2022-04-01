@@ -12,21 +12,26 @@
     align-items: center;
   }
 
-  li a {
+  .push {
+    margin-left: auto;
+  }
+
+  .navbar-title,
+  .navbar-content-sub {
     display: block;
-    color: $color-white;
     text-align: center;
     padding: 1rem 1rem;
     text-decoration: none;
   }
 
-  .navbar-content-main {
+  .navbar-title {
     font-size: 1.5rem;
     font-weight: 700;
+    color: $color-white;
   }
 
   .navbar-content-sub {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: $color-white-dim;
   }
 
@@ -39,5 +44,24 @@
 
   + * {
     margin-top: 3rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    flex-direction: column;
+
+    .push {
+      margin-left: 0;
+    }
+
+    .navbar-links {
+      display: inline;
+      align-items: center;
+
+      .navbar-content-sub {
+        padding: 0.5rem 1rem;
+      }
+    }
   }
 }
