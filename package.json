@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile:sass": "node-sass sass/main.scss public/stylesheets/style.css -w",
+    "watch": "nodemon ./index.js & node-sass sass/main.scss public/stylesheets/style.css -w"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +24,11 @@
     "mongoose": "^6.2.7",
     "multer": "^1.4.4",
     "multer-storage-cloudinary": "^4.0.0",
+    "node-sass": "^7.0.1",
     "passport": "^0.5.2",
     "passport-local-mongoose": "^7.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
