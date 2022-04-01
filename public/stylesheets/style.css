@@ -33,3 +33,32 @@ body {
 
 .btn-sm {
   font-size: 0.75rem; }
+
+.navbar {
+  height: auto;
+  display: flex;
+  justify-content: space-between; }
+  .navbar-dark {
+    background-color: #202020; }
+  .navbar .navbar-links {
+    display: flex;
+    align-items: center; }
+  .navbar li a {
+    display: block;
+    color: #eeeeee;
+    text-align: center;
+    padding: 1rem 1rem;
+    text-decoration: none; }
+  .navbar .navbar-content-main {
+    font-size: 1.5rem;
+    font-weight: 700; }
+  .navbar .navbar-content-sub {
+    font-size: 1.25rem;
+    color: #cccccc; }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; }
+  .navbar + * {
+    margin-top: 3rem; }
