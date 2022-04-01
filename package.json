@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss public/stylesheets/style.css -w",
+    "compile:sass": "node-sass sass/main.scss public/stylesheets/style.css -w -r ",
     "watch": "nodemon ./index.js & node-sass sass/main.scss public/stylesheets/style.css -w"
   },
   "keywords": [],
