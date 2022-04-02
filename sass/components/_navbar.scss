@@ -42,7 +42,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: $mobile-breakpoint) {
   .navbar {
     flex-direction: column;
     height: 10rem;

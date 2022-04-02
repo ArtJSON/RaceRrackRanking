@@ -276,7 +276,7 @@ footer {
     .navbar .navbar-content-sub:hover {
       color: white; }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   .navbar {
     flex-direction: column;
     height: 10rem; }
@@ -317,19 +317,36 @@ footer {
         /* set value for the flex basis, the two properties above will evenly 
 				divide the space. */
         flex-basis: 20px;
-        margin: 15px;
         overflow: clip; }
         .racetrack-card-container .racetrack-card .card-content .text-content > * {
-          margin: 1rem 0;
+          margin-bottom: 0.5rem;
           overflow-wrap: break-word;
-          word-break: break-all;
           overflow: hidden; }
         .racetrack-card-container .racetrack-card .card-content .text-content .card-title {
-          font-size: 2rem;
+          font-size: 1.5rem;
           font-weight: 700; }
       .racetrack-card-container .racetrack-card .card-content .btn-content {
         display: flex;
         justify-content: flex-end; }
+
+.show-header-container {
+  height: 30vh;
+  margin: 30px auto;
+  max-width: 95%; }
+  .show-header-container .show-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    background-image: linear-gradient(to right bottom, rgba(159, 215, 61, 0.5), rgba(62, 62, 62, 0.5)), url("/img/show_header_img.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative; }
+    .show-header-container .show-header-text {
+      font-size: 4rem;
+      text-align: center;
+      font-weight: 700;
+      color: #ffffff; }
 
 .header-container {
   padding: 30px;

@@ -1,0 +1,30 @@
+.show-header-container {
+  height: 30vh;
+  margin: 30px auto;
+
+  max-width: 95%;
+
+  .show-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-green, 0.5),
+        rgba($color-primary-grey, 0.5)
+      ),
+      url("/img/show_header_img.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    &-text {
+      font-size: 4rem;
+      text-align: center;
+      font-weight: 700;
+      color: $color-white;
+    }
+  }
+}

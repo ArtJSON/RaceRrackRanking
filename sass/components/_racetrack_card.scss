@@ -29,18 +29,18 @@
         /* set value for the flex basis, the two properties above will evenly 
 				divide the space. */
         flex-basis: 20px;
-        margin: 15px;
+
         overflow: clip;
 
         & > * {
-          margin: 1rem 0;
+          margin-bottom: 0.5rem;
           overflow-wrap: break-word;
-          word-break: break-all;
+
           overflow: hidden;
         }
 
         .card-title {
-          font-size: 2rem;
+          font-size: 1.5rem;
           font-weight: 700;
         }
       }
