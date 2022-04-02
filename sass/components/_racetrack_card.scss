@@ -52,3 +52,58 @@
     }
   }
 }
+
+@media (max-width: $mobile-breakpoint) {
+  .racetrack-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .racetrack-card {
+      width: 1400px;
+      max-width: 95%;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      margin: 1rem;
+      background-color: $color-light-grey;
+
+      .card-img {
+        width: 100%;
+      }
+
+      .card-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .text-content {
+          margin: 1rem 0;
+          flex: none;
+
+          overflow: clip;
+
+          & > * {
+            margin-bottom: 0.5rem;
+            overflow-wrap: break-word;
+
+            overflow: hidden;
+          }
+
+          .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+          }
+        }
+
+        .btn-content {
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}

@@ -35,7 +35,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: $mobile-breakpoint) {
   .header-container {
     height: calc(100vh - 12rem);
   }

@@ -329,6 +329,43 @@ footer {
         display: flex;
         justify-content: flex-end; }
 
+@media (max-width: 750px) {
+  .racetrack-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    .racetrack-card-container .racetrack-card {
+      width: 1400px;
+      max-width: 95%;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      margin: 1rem;
+      background-color: #ebebeb; }
+      .racetrack-card-container .racetrack-card .card-img {
+        width: 100%; }
+      .racetrack-card-container .racetrack-card .card-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; }
+        .racetrack-card-container .racetrack-card .card-content .text-content {
+          margin: 1rem 0;
+          flex: none;
+          overflow: clip; }
+          .racetrack-card-container .racetrack-card .card-content .text-content > * {
+            margin-bottom: 0.5rem;
+            overflow-wrap: break-word;
+            overflow: hidden; }
+          .racetrack-card-container .racetrack-card .card-content .text-content .card-title {
+            font-size: 1.5rem;
+            font-weight: 700; }
+        .racetrack-card-container .racetrack-card .card-content .btn-content {
+          display: flex;
+          justify-content: flex-end; } }
+
 .show-header-container {
   height: 30vh;
   margin: 30px auto;
@@ -371,6 +408,6 @@ footer {
     .header-container .header .btn-container {
       margin: 1rem; }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   .header-container {
     height: calc(100vh - 12rem); } }
