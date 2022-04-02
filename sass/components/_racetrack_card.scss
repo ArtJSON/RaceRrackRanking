@@ -1,0 +1,17 @@
+.racetrack-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .racetrack-card {
+    width: 1400px;
+    max-width: 95%;
+    border: 1px darkblue solid;
+    display: flex;
+
+    .card-img {
+      width: 40%;
+    }
+  }
+}
