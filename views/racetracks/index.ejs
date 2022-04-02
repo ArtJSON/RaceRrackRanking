@@ -6,17 +6,23 @@
     <img
       class="card-img"
       alt="MISSING JPG"
-      src="<%= racetrack.img[0] ? racetrack.img[0].url : 'img/noimg.jpg' %>"
+      src="<%= racetrack.img[0] ? racetrack.img[0].carousel : 'img/noimg.jpg' %>"
     />
     <div class="card-content">
-      <h5 class="card-title"><%= racetrack.name %></h5>
-      <p class="card-text"><%= racetrack.description %></p>
-      <p>
-        <small class="text-location"><%= racetrack.location %></small>
-      </p>
-      <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>"
-        >Details</a
-      >
+      <div class="text-content">
+        <h2 class="card-title"><%= racetrack.name %></h2>
+        <hr />
+        <p>
+          <small class="text-location"><%= racetrack.location %></small>
+        </p>
+        <hr />
+        <p class="card-text"><%= racetrack.description %></p>
+      </div>
+      <div class="btn-content">
+        <a class="btn btn-primary-green" href="/racetracks/<%= racetrack.id %>"
+          >Details</a
+        >
+      </div>
     </div>
   </div>
   <% } %>

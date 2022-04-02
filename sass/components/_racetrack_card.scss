@@ -7,11 +7,48 @@
   .racetrack-card {
     width: 1400px;
     max-width: 95%;
-    border: 1px darkblue solid;
     display: flex;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: $color-light-grey;
 
     .card-img {
       width: 40%;
+    }
+
+    .card-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .text-content {
+        margin-left: 1rem;
+        flex-grow: 1;
+        flex-shrink: 1;
+        /* set value for the flex basis, the two properties above will evenly 
+				divide the space. */
+        flex-basis: 20px;
+        margin: 15px;
+        overflow: clip;
+
+        & > * {
+          margin: 1rem 0;
+          overflow-wrap: break-word;
+          word-break: break-all;
+          overflow: hidden;
+        }
+
+        .card-title {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+      }
+
+      .btn-content {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
 }
