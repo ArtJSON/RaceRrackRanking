@@ -80,7 +80,6 @@ app.get("/", async (req, res) => {
   const random = Math.floor(Math.random() * count);
   const racetrack = await Racetrack.findOne().skip(random);
 
-  console.log(racetrack);
   res.render("index", { racetrack });
 });
 

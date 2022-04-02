@@ -1,111 +1,167 @@
 <% layout('layouts/boilerplate') %>
 
-<link rel="stylesheet" href="/stylesheets/starability.css">
+<link rel="stylesheet" href="/stylesheets/starability.css" />
+
+<div class="show-container">
+  <div class="detail-row"></div>
+  <div class="reivew-row"></div>
+</div>
+
+<div class="carousel-container">
+  <button class="carousel-btn" id="prev">&#8678;</button>
+  <div class="carousel-slide">
+    <% let i = 0; for( let img of racetrack.img) { %>
+    <img src="<%= img.carousel %> " alt="Race track image #<%= ++i %> " />
+    <% } %>
+  </div>
+  <button class="carousel-btn" id="next">&#8680;</button>
+</div>
 
 <div class="row">
   <div class="col-6 my-3">
     <div class="card">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <% let i = 0; for( let img of racetrack.img) { %>
-            <div class="carousel-item <% if (i++ == 0) { %>active<% } %>">
-              <img class="d-block w-100" src="<%= img.carousel %> " alt="Second slide">
-            </div>
-          <% } %>
-        </div>
-        <% if (racetrack.img.length > 1) { %>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button> 
-        <% } %>
-      </div>
       <div class="card-body">
         <h5 class="card-title"><%= racetrack.name %></h5>
         <p class="card-text"><%= racetrack.description %></p>
       </div>
-      <ul class="list-group list-group-flush">   
-          <li class="list-group-item">Created by <%= racetrack.author.username %></li>
-          <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
-          <li class="list-group-item text-muted">
-            <%= racetrack.location %>
-            <div class="border" id='map' style='width: 100%; height: 300px;'></div>
-          </li>
-        </ul>
-        <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
-          <div class="card-body">
-            <form class="d-inline" action="/racetracks/<%= racetrack.id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete this racetrack</button>
-            </form>
-            <form class="d-inline" action="/racetracks/<%= racetrack.id %>/edit">
-                <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit">Edit</a>
-            </form>
-            <form class="d-inline" action="/racetracks/<%= racetrack.id %>/photos">
-              <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/photos">Manage photos</a>
-            </form>        
-        </div>  
-        <% } %>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Created by <%= racetrack.author.username %>
+        </li>
+        <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
+        <li class="list-group-item text-muted">
+          <%= racetrack.location %>
+          <div class="border" id="map" style="width: 100%; height: 300px"></div>
+        </li>
+      </ul>
+      <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
+      <div class="card-body">
+        <form
+          class="d-inline"
+          action="/racetracks/<%= racetrack.id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-danger">Delete this racetrack</button>
+        </form>
+        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/edit">
+          <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit"
+            >Edit</a
+          >
+        </form>
+        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/photos">
+          <a
+            class="btn btn-primary"
+            href="/racetracks/<%= racetrack.id %>/photos"
+            >Manage photos</a
+          >
+        </form>
+      </div>
+      <% } %>
     </div>
   </div>
   <div class="col-6">
     <% if (currentUser) { %>
-    <form class="validated-form" action="/racetracks/<%= racetrack.id %>/reviews" method="POST" novalidate>
+    <form
+      class="validated-form"
+      action="/racetracks/<%= racetrack.id %>/reviews"
+      method="POST"
+      novalidate
+    >
       <h4 class="my-3">Leave a review of <%= racetrack.name %></h4>
       <div class="mb-3">
         <label class="form-label" for="text">Enter the review: </label>
-        <textarea class="form-control" type="text" id="text" name="review[text]" required></textarea>
+        <textarea
+          class="form-control"
+          type="text"
+          id="text"
+          name="review[text]"
+          required
+        ></textarea>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="rating">Rating: <span id="output-rating"></span></label>
+        <label class="form-label" for="rating"
+          >Rating: <span id="output-rating"></span
+        ></label>
         <fieldset class="starability-basic">
-          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
-          <input type="radio" id="second-rate1" name="review[rating]" value="1" />
+          <input
+            type="radio"
+            id="no-rate"
+            class="input-no-rate"
+            name="review[rating]"
+            value="0"
+            checked
+            aria-label="No rating."
+          />
+          <input
+            type="radio"
+            id="second-rate1"
+            name="review[rating]"
+            value="1"
+          />
           <label for="second-rate1" title="Terrible">1 star</label>
-          <input type="radio" id="second-rate2" name="review[rating]" value="2" />
+          <input
+            type="radio"
+            id="second-rate2"
+            name="review[rating]"
+            value="2"
+          />
           <label for="second-rate2" title="Not good">2 stars</label>
-          <input type="radio" id="second-rate3" name="review[rating]" value="3" />
+          <input
+            type="radio"
+            id="second-rate3"
+            name="review[rating]"
+            value="3"
+          />
           <label for="second-rate3" title="Average">3 stars</label>
-          <input type="radio" id="second-rate4" name="review[rating]" value="4" />
+          <input
+            type="radio"
+            id="second-rate4"
+            name="review[rating]"
+            value="4"
+          />
           <label for="second-rate4" title="Very good">4 stars</label>
-          <input type="radio" id="second-rate5" name="review[rating]" value="5" />
+          <input
+            type="radio"
+            id="second-rate5"
+            name="review[rating]"
+            value="5"
+          />
           <label for="second-rate5" title="Amazing">5 stars</label>
         </fieldset>
       </div>
       <button class="btn btn-success">Submit review</button>
     </form>
-    <% } %>
-    <% if (racetrack.reviews.length == 0) { %>
-     <p class="my-5 text-muted text-center">No reviews</p>
+    <% } %> <% if (racetrack.reviews.length == 0) { %>
+    <p class="my-5 text-muted text-center">No reviews</p>
     <% } else { %>
-     <h4 class="my-3">Reviews: </h4>
-    <% } %>
-    <% for( let review of racetrack.reviews ) { %>
-      <div class="my-3">
-        <div class="card">
-          <div class="card-body">
-            <p class="starability-result" data-rating="<%=review.rating%>">
-              Rated: <%= review.rating %> stars
-            </p>
-            <p class="card-text"><%= review.text %></p>
-            <p class="card-text text-muted">By <%= review.author.username %> </p>
-            <% if( currentUser && review.author.equals(currentUser._id)) { %>
-            <form action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
-              <button class="btn btn-sm btn-danger">Delete review</button>
-            </form>
-            <% } %>
-          </div>
+    <h4 class="my-3">Reviews:</h4>
+    <% } %> <% for( let review of racetrack.reviews ) { %>
+    <div class="my-3">
+      <div class="card">
+        <div class="card-body">
+          <p class="starability-result" data-rating="<%=review.rating%>">
+            Rated: <%= review.rating %> stars
+          </p>
+          <p class="card-text"><%= review.text %></p>
+          <p class="card-text text-muted">By <%= review.author.username %></p>
+          <% if( currentUser && review.author.equals(currentUser._id)) { %>
+          <form
+            action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-sm btn-danger">Delete review</button>
+          </form>
+          <% } %>
         </div>
       </div>
+    </div>
     <% } %>
   </div>
 </div>
-  
+
 <script>
   const mapboxToken = mapboxgl.accessToken = '<%-process.env.MAPBOX_TOKEN%>';
   const racetrack = <%- JSON.stringify(racetrack) %>
 </script>
 <script src="/scripts/showMapbox.js"></script>
+<script src="/scripts/carousel.js"></script>

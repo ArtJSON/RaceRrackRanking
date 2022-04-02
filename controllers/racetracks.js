@@ -96,7 +96,6 @@ module.exports.renderShowPage = async (req, res, next) => {
     req.flash("error", "Cannot find this race track");
     res.redirect("/racetracks");
   }
-  console.log({ racetrack });
   res.render("racetracks/show", { racetrack });
 };
 

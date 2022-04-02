@@ -1,0 +1,40 @@
+.carousel-container {
+  width: 800px;
+  overflow: hidden;
+  position: relative;
+  .carousel-slide {
+    display: flex;
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    font-size: 2rem;
+    color: $color-primary-grey;
+    font-weight: 700;
+    background-color: $color-primary-green;
+    border-radius: 10rem;
+    padding: 0.5rem;
+    opacity: 0.4;
+    transition-duration: 0.2s;
+    transform: translate(0, -50%);
+
+    &#prev {
+      left: 2%;
+    }
+
+    &#next {
+      right: 2%;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

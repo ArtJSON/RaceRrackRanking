@@ -237,6 +237,35 @@ svg {
 .btn-sm {
   font-size: 0.75rem; }
 
+.carousel-container {
+  width: 800px;
+  overflow: hidden;
+  position: relative; }
+  .carousel-container .carousel-slide {
+    display: flex;
+    width: 100%; }
+    .carousel-container .carousel-slide img {
+      width: 100%; }
+  .carousel-container .carousel-btn {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    font-size: 2rem;
+    color: #3e3e3e;
+    font-weight: 700;
+    background-color: #9fd73d;
+    border-radius: 10rem;
+    padding: 0.5rem;
+    opacity: 0.4;
+    transition-duration: 0.2s;
+    transform: translate(0, -50%); }
+    .carousel-container .carousel-btn#prev {
+      left: 2%; }
+    .carousel-container .carousel-btn#next {
+      right: 2%; }
+    .carousel-container .carousel-btn:hover {
+      opacity: 0.9; }
+
 footer {
   display: flex;
   justify-content: center;
