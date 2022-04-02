@@ -1,0 +1,45 @@
+.show-container {
+  display: flex;
+
+  > * {
+    margin: 1rem;
+  }
+
+  hr {
+    border: 0;
+    margin: 0;
+    width: 100%;
+    height: 2px;
+    background: $color-primary-green;
+  }
+
+  .detail-row {
+    background-color: $color-light-grey;
+    padding: 0.5rem;
+    .main-detail {
+      padding: 0.5rem;
+      > * {
+        margin-bottom: 0.5rem;
+      }
+
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .description {
+        border-top: solid $color-primary-green 2px;
+        padding-top: 0.5rem;
+        font-size: 1.25rem;
+      }
+    }
+    .detail-row-group {
+      .group-element {
+        margin: 0.5rem 0;
+      }
+      .group-element + .group-element {
+        border-top: solid $color-primary-green 2px;
+        padding-top: 0.5rem;
+      }
+    }
+  }
+}

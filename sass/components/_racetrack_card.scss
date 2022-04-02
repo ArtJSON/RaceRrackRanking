@@ -30,6 +30,11 @@
 				divide the space. */
         flex-basis: 20px;
 
+        .text-content-element + .text-content-element {
+          border-top: solid $color-primary-green 2px;
+          padding-top: 0.5rem;
+        }
+
         overflow: clip;
 
         & > * {

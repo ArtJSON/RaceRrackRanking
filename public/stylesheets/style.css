@@ -209,6 +209,9 @@ img,
 svg {
   vertical-align: center; }
 
+.text-muted {
+  color: #5d5d5d; }
+
 .btn:link, .btn:visited {
   text-transform: initial;
   text-decoration: none;
@@ -242,10 +245,7 @@ svg {
   overflow: hidden;
   position: relative; }
   .carousel-container .carousel-slide {
-    display: flex;
-    width: 100%; }
-    .carousel-container .carousel-slide img {
-      width: 100%; }
+    display: flex; }
   .carousel-container .carousel-btn {
     position: absolute;
     top: 50%;
@@ -347,6 +347,9 @@ footer {
 				divide the space. */
         flex-basis: 20px;
         overflow: clip; }
+        .racetrack-card-container .racetrack-card .card-content .text-content .text-content-element + .text-content-element {
+          border-top: solid #9fd73d 2px;
+          padding-top: 0.5rem; }
         .racetrack-card-container .racetrack-card .card-content .text-content > * {
           margin-bottom: 0.5rem;
           overflow-wrap: break-word;
@@ -451,3 +454,32 @@ footer {
 @media (max-width: 750px) {
   .header-container {
     height: calc(100vh - 12rem); } }
+
+.show-container {
+  display: flex; }
+  .show-container > * {
+    margin: 1rem; }
+  .show-container hr {
+    border: 0;
+    margin: 0;
+    width: 100%;
+    height: 2px;
+    background: #9fd73d; }
+  .show-container .detail-row {
+    background-color: #ebebeb;
+    padding: 0.5rem; }
+    .show-container .detail-row .main-detail {
+      padding: 0.5rem; }
+      .show-container .detail-row .main-detail > * {
+        margin-bottom: 0.5rem; }
+      .show-container .detail-row .main-detail .title {
+        font-size: 2.5rem; }
+      .show-container .detail-row .main-detail .description {
+        border-top: solid #9fd73d 2px;
+        padding-top: 0.5rem;
+        font-size: 1.25rem; }
+    .show-container .detail-row .detail-row-group .group-element {
+      margin: 0.5rem 0; }
+    .show-container .detail-row .detail-row-group .group-element + .group-element {
+      border-top: solid #9fd73d 2px;
+      padding-top: 0.5rem; }

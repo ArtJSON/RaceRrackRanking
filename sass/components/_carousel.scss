@@ -1,14 +1,9 @@
 .carousel-container {
-  width: 800px;
+  width: $img-carousel-size;
   overflow: hidden;
   position: relative;
   .carousel-slide {
     display: flex;
-    width: 100%;
-
-    img {
-      width: 100%;
-    }
   }
 
   .carousel-btn {

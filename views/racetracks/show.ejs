@@ -3,63 +3,28 @@
 <link rel="stylesheet" href="/stylesheets/starability.css" />
 
 <div class="show-container">
-  <div class="detail-row"></div>
-  <div class="reivew-row"></div>
-</div>
-
-<div class="carousel-container">
-  <button class="carousel-btn" id="prev">&#8678;</button>
-  <div class="carousel-slide">
-    <% let i = 0; for( let img of racetrack.img) { %>
-    <img src="<%= img.carousel %> " alt="Race track image #<%= ++i %> " />
-    <% } %>
-  </div>
-  <button class="carousel-btn" id="next">&#8680;</button>
-</div>
-
-<div class="row">
-  <div class="col-6 my-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= racetrack.name %></h5>
-        <p class="card-text"><%= racetrack.description %></p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          Created by <%= racetrack.author.username %>
-        </li>
-        <li class="list-group-item">$<%= racetrack.pricePerLap %> per lap</li>
-        <li class="list-group-item text-muted">
-          <%= racetrack.location %>
-          <div class="border" id="map" style="width: 100%; height: 300px"></div>
-        </li>
-      </ul>
-      <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
-      <div class="card-body">
-        <form
-          class="d-inline"
-          action="/racetracks/<%= racetrack.id %>?_method=DELETE"
-          method="POST"
-        >
-          <button class="btn btn-danger">Delete this racetrack</button>
-        </form>
-        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/edit">
-          <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit"
-            >Edit</a
-          >
-        </form>
-        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/photos">
-          <a
-            class="btn btn-primary"
-            href="/racetracks/<%= racetrack.id %>/photos"
-            >Manage photos</a
-          >
-        </form>
-      </div>
-      <% } %>
+  <div class="detail-row">
+    <div class="main-detail">
+      <h5 class="title"><%= racetrack.name %></h5>
+      <p class="description"><%= racetrack.description %></p>
     </div>
+    <div class="carousel-container">
+      <button class="carousel-btn" id="prev">&#60;</button>
+      <div class="carousel-slide">
+        <% let i = 0; for( let img of racetrack.img) { %>
+        <img src="<%= img.carousel %> " alt="Race track image #<%= ++i %> " />
+        <% } %>
+      </div>
+      <button class="carousel-btn" id="next">&#62;</button>
+    </div>
+    <ul class="detail-row-group">
+      <li class="group-element">Created by <%= racetrack.author.username %></li>
+      <li class="group-element">$<%= racetrack.pricePerLap %> per lap</li>
+      <li class="group-element text-muted"><%= racetrack.location %></li>
+    </ul>
+    <div id="map" style="width: 100%; height: 300px"></div>
   </div>
-  <div class="col-6">
+  <div class="reivew-row">
     <% if (currentUser) { %>
     <form
       class="validated-form"
@@ -154,8 +119,38 @@
           <% } %>
         </div>
       </div>
+      <% } %>
     </div>
-    <% } %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6 my-3">
+    <div class="card">
+      <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
+      <div class="card-body">
+        <form
+          class="d-inline"
+          action="/racetracks/<%= racetrack.id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-danger">Delete this racetrack</button>
+        </form>
+        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/edit">
+          <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit"
+            >Edit</a
+          >
+        </form>
+        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/photos">
+          <a
+            class="btn btn-primary"
+            href="/racetracks/<%= racetrack.id %>/photos"
+            >Manage photos</a
+          >
+        </form>
+      </div>
+      <% } %>
+    </div>
   </div>
 </div>
 
