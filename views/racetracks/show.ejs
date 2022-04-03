@@ -29,102 +29,106 @@
       <div></div>
     </div>
     <div class="review-row">
-      <% if (currentUser) { %>
-      <form
-        class="validated-form"
-        action="/racetracks/<%= racetrack.id %>/reviews"
-        method="POST"
-        novalidate
-      >
-        <h4 class="my-3">Leave a review of <%= racetrack.name %></h4>
-        <div class="mb-3">
-          <label class="form-label" for="text">Enter the review: </label>
-          <textarea
-            class="form-control"
-            type="text"
-            id="text"
-            name="review[text]"
-            required
-          ></textarea>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="rating"
-            >Rating: <span id="output-rating"></span
-          ></label>
-          <fieldset class="starability-basic">
-            <input
-              type="radio"
-              id="no-rate"
-              class="input-no-rate"
-              name="review[rating]"
-              value="0"
-              checked
-              aria-label="No rating."
-            />
-            <input
-              type="radio"
-              id="second-rate1"
-              name="review[rating]"
-              value="1"
-            />
-            <label for="second-rate1" title="Terrible">1 star</label>
-            <input
-              type="radio"
-              id="second-rate2"
-              name="review[rating]"
-              value="2"
-            />
-            <label for="second-rate2" title="Not good">2 stars</label>
-            <input
-              type="radio"
-              id="second-rate3"
-              name="review[rating]"
-              value="3"
-            />
-            <label for="second-rate3" title="Average">3 stars</label>
-            <input
-              type="radio"
-              id="second-rate4"
-              name="review[rating]"
-              value="4"
-            />
-            <label for="second-rate4" title="Very good">4 stars</label>
-            <input
-              type="radio"
-              id="second-rate5"
-              name="review[rating]"
-              value="5"
-            />
-            <label for="second-rate5" title="Amazing">5 stars</label>
-          </fieldset>
-        </div>
-        <button class="btn btn-success">Submit review</button>
-      </form>
-      <% } %> <% if (racetrack.reviews.length == 0) { %>
-      <p class="text-muted text-lg text-center">No reviews</p>
-      <% } else { %>
-      <h4 class="my-3">Reviews:</h4>
-      <% } %> <% for( let review of racetrack.reviews ) { %>
       <div class="review-container">
-        <div class="card">
-          <div class="card-body">
-            <p class="starability-result" data-rating="<%=review.rating%>">
-              Rated: <%= review.rating %> stars
-            </p>
-            <p class="card-text"><%= review.text %></p>
-            <p class="card-text text-muted">By <%= review.author.username %></p>
-            <% if( currentUser && review.author.equals(currentUser._id)) { %>
-            <form
-              action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE"
-              method="POST"
-            >
-              <button class="btn btn-sm btn-danger">Delete review</button>
-            </form>
-            <% } %>
+        <% if (currentUser) { %>
+        <form
+          class="validated-form"
+          action="/racetracks/<%= racetrack.id %>/reviews"
+          method="POST"
+          novalidate
+        >
+          <h4 class="form-title">Review <%= racetrack.name %></h4>
+          <div class="mb-3">
+            <label class="form-label" for="text">Leave your opinion: </label>
+            <textarea
+              class="form-control"
+              type="text"
+              id="text"
+              name="review[text]"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="rating"
+              >Rating: <span id="output-rating"></span
+            ></label>
+            <fieldset class="starability-basic">
+              <input
+                type="radio"
+                id="no-rate"
+                class="input-no-rate"
+                name="review[rating]"
+                value="0"
+                checked
+                aria-label="No rating."
+              />
+              <input
+                type="radio"
+                id="second-rate1"
+                name="review[rating]"
+                value="1"
+              />
+              <label for="second-rate1" title="Terrible">1 star</label>
+              <input
+                type="radio"
+                id="second-rate2"
+                name="review[rating]"
+                value="2"
+              />
+              <label for="second-rate2" title="Not good">2 stars</label>
+              <input
+                type="radio"
+                id="second-rate3"
+                name="review[rating]"
+                value="3"
+              />
+              <label for="second-rate3" title="Average">3 stars</label>
+              <input
+                type="radio"
+                id="second-rate4"
+                name="review[rating]"
+                value="4"
+              />
+              <label for="second-rate4" title="Very good">4 stars</label>
+              <input
+                type="radio"
+                id="second-rate5"
+                name="review[rating]"
+                value="5"
+              />
+              <label for="second-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <button class="btn btn-success">Submit review</button>
+        </form>
+        <% } %> <% if (racetrack.reviews.length == 0) { %>
+        <p class="text-muted text-lg text-center">No reviews</p>
+        <% } else { %>
+        <h4 class="my-3">Reviews:</h4>
+        <% } %> <% for( let review of racetrack.reviews ) { %>
+        <div class="review-container">
+          <div class="card">
+            <div class="card-body">
+              <p class="starability-result" data-rating="<%=review.rating%>">
+                Rated: <%= review.rating %> stars
+              </p>
+              <p class="card-text"><%= review.text %></p>
+              <p class="card-text text-muted">
+                By <%= review.author.username %>
+              </p>
+              <% if( currentUser && review.author.equals(currentUser._id)) { %>
+              <form
+                action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE"
+                method="POST"
+              >
+                <button class="btn btn-sm btn-danger">Delete review</button>
+              </form>
+              <% } %>
+            </div>
           </div>
         </div>
+        <% } %>
       </div>
-      <% } %>
     </div>
   </div>
 </div>
