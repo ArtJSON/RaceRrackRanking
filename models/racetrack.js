@@ -8,7 +8,7 @@ const imgSchema = new Schema({
 });
 
 imgSchema.virtual("thumbnail").get(function () {
-  return this.url.replace("/upload", "/upload/w_200");
+  return this.url.replace("/upload", "/upload/c_fill,h_200,w_300");
 });
 imgSchema.virtual("carousel").get(function () {
   return this.url.replace("/upload", "/upload/c_fill,h_600,w_800");

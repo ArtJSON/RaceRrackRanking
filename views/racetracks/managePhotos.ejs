@@ -25,7 +25,6 @@
       </div>
     </form>
   </div>
-
   <div class="form-wrapper-md">
     <form
       action="/racetracks/<%= racetrack.id %>/photos?_method=DELETE"
@@ -33,35 +32,27 @@
       novalidate
       class="form"
     >
-      <h1 class="form-title">Or delete existing photos:</h1>
-      <div class="form-group">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-          <% for(let img of racetrack.img) { %>
-          <div class="col">
-            <div class="card h-100">
-              <img src="<%= img.thumbnail %>" class="card-img-top" />
-              <div class="card-body">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value="<%= img.filename %>"
-                  name="imageNames[]"
-                  id="<%= img.filename %>"
-                />
-                <label class="form-check-label" for="<%= img.filename %>">
-                  Delete
-                </label>
-              </div>
-            </div>
-          </div>
-          <% } %>
-        </div>
-      </div>
+      <h1 class="form-title">Or select and delete existing photos:</h1>
+      <ul class="image-checkbox-list">
+        <% let num = 0; for(let img of racetrack.img) { %>
+        <li>
+          <input
+            type="checkbox"
+            id="<%= img.filename %>"
+            value="<%= img.filename %>"
+            name="imageNames[]"
+          />
+          <label for="<%= img.filename %>">
+            <img src="<%= img.thumbnail %>" />
+          </label>
+        </li>
+        <% } %>
+      </ul>
       <div class="form-group">
         <button class="btn btn-primary-green">Remove photos</button>
-        <a class="btn btn-red" href="/racetracks/<%= racetrack.id %>"
-          >Quit editing</a
-        >
+        <a class="btn btn-red" href="/racetracks/<%= racetrack.id %>">
+          Quit editing
+        </a>
       </div>
     </form>
   </div>
