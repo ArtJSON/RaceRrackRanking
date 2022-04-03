@@ -42,7 +42,23 @@
   }
 }
 
+@keyframes flashDisappear {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 .move-in-bottom {
   animation-name: moveInBottom;
   animation-duration: 1s;
+}
+
+.flash-disappear {
+  opacity: 0;
+  animation-name: flashDisappear;
+  animation-duration: 0.5s;
 }
