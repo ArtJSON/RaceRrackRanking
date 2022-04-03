@@ -3,10 +3,21 @@
 
   .form-group {
     margin: 2rem 0;
+    position: relative;
 
     .form-label {
       display: block;
       margin-bottom: 0.5rem;
+    }
+
+    .currency-code {
+      position: absolute;
+      left: 0.5rem;
+      top: 2rem;
+    }
+
+    .currency-code + input[type="number"] {
+      padding-left: 1.5rem;
     }
   }
 
