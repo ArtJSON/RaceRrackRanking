@@ -640,6 +640,9 @@ footer {
   background-color: #ebebeb; }
   .form .form-group {
     margin: 2rem 0; }
+    .form .form-group .form-label {
+      display: block;
+      margin-bottom: 0.5rem; }
   .form .form-title {
     font-size: 1.5rem; }
   .form textarea {
