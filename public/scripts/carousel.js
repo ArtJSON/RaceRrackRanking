@@ -22,23 +22,25 @@ let size = carouselImages[0].clientWidth;
 carouselSlide.style.transform = `translate(${-size * counter}px)`;
 
 // add event listeners
-nextBtn.addEventListener("click", () => {
-  if (counter > imgAmount - 2) {
-    return;
-  }
-  carouselSlide.style.transition = "transform 0.25s ease-in-out";
-  counter++;
-  carouselSlide.style.transform = `translate(${-size * counter}px)`;
-});
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    if (counter > imgAmount - 2) {
+      return;
+    }
+    carouselSlide.style.transition = "transform 0.25s ease-in-out";
+    counter++;
+    carouselSlide.style.transform = `translate(${-size * counter}px)`;
+  });
 
-prevBtn.addEventListener("click", () => {
-  if (counter <= 0) {
-    return;
-  }
-  carouselSlide.style.transition = "transform 0.25s ease-in-out";
-  counter--;
-  carouselSlide.style.transform = `translate(${-size * counter}px)`;
-});
+  prevBtn.addEventListener("click", () => {
+    if (counter <= 0) {
+      return;
+    }
+    carouselSlide.style.transition = "transform 0.25s ease-in-out";
+    counter--;
+    carouselSlide.style.transform = `translate(${-size * counter}px)`;
+  });
+}
 
 carouselSlide.addEventListener("transitionend", () => {
   if (counter <= 0) {

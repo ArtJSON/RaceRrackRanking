@@ -57,3 +57,9 @@
     }
   }
 }
+
+@media screen and (max-width: $mobile-breakpoint) {
+  .show-container {
+    flex-direction: column;
+  }
+}
