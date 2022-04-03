@@ -754,7 +754,8 @@ footer {
 .form-wrapper-md {
   display: flex;
   justify-content: center;
-  align-items: flex-start; }
+  align-items: flex-start;
+  padding: 2rem 0; }
   .form-wrapper-md .form {
     width: 800px;
     max-width: 95%; }
@@ -828,3 +829,9 @@ footer {
       width: 100%;
       margin: auto;
       min-height: auto; } }
+
+.min-full-screen {
+  min-height: calc(100vh - 5.5rem); }
+  @media screen and (max-width: 750px) {
+    .min-full-screen {
+      min-height: calc(100vh - 12rem); } }
