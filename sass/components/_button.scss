@@ -1,14 +1,10 @@
 .btn {
-  &:link,
-  &:visited {
-    text-transform: initial;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    display: inline-block;
-    border-radius: 0.5em;
-    transition: all 0.2s;
-    position: relative;
-  }
+  padding: 0.5em 1em;
+  text-transform: initial;
+  display: inline-block;
+  border-radius: 0.5em;
+  transition: all 0.2s;
+  position: relative;
 
   &-dark {
     background-color: $color-grey-dark;

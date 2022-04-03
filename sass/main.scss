@@ -1,4 +1,5 @@
 @import "base/_reset.scss";
+@import "external/_starability.scss";
 
 @import "abstracts/_animations.scss";
 @import "abstracts/_variables.scss";
@@ -13,8 +14,6 @@
 @import "components/_racetrack_card.scss";
 @import "components/_review.scss";
 @import "components/_show_header.scss";
-
-@import "external/_starability.scss";
 
 @import "layout/_header.scss";
 @import "layout/_form.scss";

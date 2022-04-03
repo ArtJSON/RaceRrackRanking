@@ -4,6 +4,10 @@ form {
     font-size: 1.5rem;
   }
 
+  & > * {
+    margin-bottom: 0.5rem;
+  }
+
   textarea {
     display: block;
     border: 1px $color-primary-grey solid;
