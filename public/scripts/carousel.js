@@ -17,7 +17,7 @@ carouselSlide.appendChild(carouselImages[0].cloneNode(true));
 
 // main carousel logic
 let counter = 1;
-const size = carouselImages[0].clientWidth;
+let size = carouselImages[0].clientWidth;
 
 carouselSlide.style.transform = `translate(${-size * counter}px)`;
 
@@ -52,4 +52,10 @@ carouselSlide.addEventListener("transitionend", () => {
     counter = 1;
     carouselSlide.style.transform = `translate(${-size * counter}px)`;
   }
+});
+
+window.addEventListener("resize", () => {
+  size = carouselImages[0].clientWidth;
+  carouselSlide.style.transition = "none";
+  carouselSlide.style.transform = `translate(${-size * counter}px)`;
 });

@@ -212,6 +212,12 @@ svg {
 .text-muted {
   color: #5d5d5d; }
 
+.text-center {
+  text-align: center; }
+
+.text-lg {
+  font-size: 2rem; }
+
 .btn:link, .btn:visited {
   text-transform: initial;
   text-decoration: none;
@@ -241,11 +247,14 @@ svg {
   font-size: 0.75rem; }
 
 .carousel-container {
-  width: 800px;
+  width: 100%;
+  height: auto;
   overflow: hidden;
   position: relative; }
   .carousel-container .carousel-slide {
     display: flex; }
+    .carousel-container .carousel-slide img {
+      min-width: 100%; }
   .carousel-container .carousel-btn {
     position: absolute;
     top: 50%;
@@ -456,30 +465,39 @@ footer {
     height: calc(100vh - 12rem); } }
 
 .show-container {
-  display: flex; }
-  .show-container > * {
-    margin: 1rem; }
-  .show-container hr {
-    border: 0;
-    margin: 0;
-    width: 100%;
-    height: 2px;
-    background: #9fd73d; }
-  .show-container .detail-row {
-    background-color: #ebebeb;
-    padding: 0.5rem; }
-    .show-container .detail-row .main-detail {
-      padding: 0.5rem; }
-      .show-container .detail-row .main-detail > * {
-        margin-bottom: 0.5rem; }
-      .show-container .detail-row .main-detail .title {
-        font-size: 2.5rem; }
-      .show-container .detail-row .main-detail .description {
+  display: flex;
+  justify-content: center; }
+  .show-container .show {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    max-width: 95%;
+    width: 1400px; }
+    .show-container .show hr {
+      border: 0;
+      margin: 0;
+      width: 100%;
+      height: 2px;
+      background: #9fd73d; }
+    .show-container .show .detail-row {
+      background-color: #ebebeb;
+      padding: 0.5rem;
+      width: 40%; }
+      .show-container .show .detail-row .main-detail {
+        padding: 0.5rem; }
+        .show-container .show .detail-row .main-detail > * {
+          margin-bottom: 0.5rem; }
+        .show-container .show .detail-row .main-detail .title {
+          font-size: 2.5rem; }
+        .show-container .show .detail-row .main-detail .description {
+          border-top: solid #9fd73d 2px;
+          padding-top: 0.5rem;
+          font-size: 1.25rem; }
+      .show-container .show .detail-row .detail-row-group .group-element {
+        margin: 0.5rem 0; }
+      .show-container .show .detail-row .detail-row-group .group-element + .group-element {
         border-top: solid #9fd73d 2px;
-        padding-top: 0.5rem;
-        font-size: 1.25rem; }
-    .show-container .detail-row .detail-row-group .group-element {
-      margin: 0.5rem 0; }
-    .show-container .detail-row .detail-row-group .group-element + .group-element {
-      border-top: solid #9fd73d 2px;
-      padding-top: 0.5rem; }
+        padding-top: 0.5rem; }
+    .show-container .show .review-row {
+      margin-left: 1rem;
+      width: 60%; }
