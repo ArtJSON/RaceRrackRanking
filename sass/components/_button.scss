@@ -12,11 +12,11 @@
   }
 
   &-red {
-    background-color: #d00000;
+    background-color: $color-danger;
     color: $color-white;
 
     &:hover {
-      background-color: darken(#d00000, 10);
+      background-color: darken($color-danger, 10);
     }
   }
 
@@ -43,5 +43,26 @@
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+.btn-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  line-height: 2rem;
+  width: 2rem;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: rgba($color-black, 0.2);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba($color-black, 0.3);
   }
 }

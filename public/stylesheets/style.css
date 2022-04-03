@@ -410,6 +410,24 @@ svg {
   .btn:hover {
     cursor: pointer; }
 
+.btn-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  line-height: 2rem;
+  width: 2rem;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s; }
+  .btn-close:hover {
+    background-color: rgba(0, 0, 0, 0.3); }
+
 .carousel-container {
   width: 100%;
   height: auto;
@@ -599,7 +617,31 @@ footer {
       font-size: 4rem;
       text-align: center;
       font-weight: 700;
-      color: #ffffff; }
+      color: #ffffff;
+      text-shadow: 2px 2px 4px #000000; }
+
+.flash-container {
+  display: flex;
+  justify-content: center;
+  position: relative; }
+  .flash-container .flash {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    z-index: 10;
+    width: 800px;
+    max-width: 95%;
+    padding: 0.5rem;
+    background-color: #202020;
+    color: #ffffff;
+    font-size: 1.25rem;
+    box-shadow: inset 0px 0px 34px -20px #42445a; }
+    .flash-container .flash-primary {
+      background-color: #9fd73d; }
+    .flash-container .flash-danger {
+      background-color: #d00000; }
 
 .header-container {
   padding: 30px;

@@ -1,0 +1,29 @@
+.flash-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .flash {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    z-index: 10;
+    width: 800px;
+    max-width: 95%;
+    padding: 0.5rem;
+    background-color: $color-grey-dark;
+    color: $color-white;
+    font-size: 1.25rem;
+    box-shadow: inset 0px 0px 34px -20px rgba(66, 68, 90, 1);
+
+    &-primary {
+      background-color: $color-primary-green;
+    }
+
+    &-danger {
+      background-color: $color-danger;
+    }
+  }
+}
