@@ -11,6 +11,15 @@
     color: $color-white;
   }
 
+  &-red {
+    background-color: #d00000;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken(#d00000, 10);
+    }
+  }
+
   &-primary-green {
     background-color: $color-primary-green;
     color: $color-white;
@@ -30,5 +39,9 @@
 
   &-sm {
     font-size: 0.75rem;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }

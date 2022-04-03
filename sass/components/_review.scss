@@ -1,2 +1,15 @@
 .review-container {
+  .reviews-label {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .review {
+    margin-bottom: 1.5rem;
+    background-color: $color-light-grey;
+    padding: 0.5rem;
+
+    .review-text {
+      margin: 0.5rem 0;
+    }
+  }
 }
