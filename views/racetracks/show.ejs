@@ -109,23 +109,28 @@
         <p class="text-muted text-lg text-center">No reviews</p>
         <% } else { %>
         <h4 class="reviews-label">Reviews:</h4>
-        <% } %> <% for( let review of racetrack.reviews ) { %>
-        <div class="review">
-          <p class="review-text"><%= review.text %></p>
-          <p class="starability-result" data-rating="<%=review.rating%>">
-            Rated: <%= review.rating %> stars
-          </p>
-          <p class="review-text text-muted">By <%= review.author.username %></p>
-          <% if( currentUser && review.author.equals(currentUser._id)) { %>
-          <form
-            action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE"
-            method="POST"
-          >
-            <button class="btn btn-sm btn-red">Delete review</button>
-          </form>
+        <% } %>
+        <div class="reviews">
+          <% for( let review of racetrack.reviews ) { %>
+          <div class="review">
+            <p class="review-text"><%= review.text %></p>
+            <p class="starability-result" data-rating="<%=review.rating%>">
+              Rated: <%= review.rating %> stars
+            </p>
+            <p class="review-text text-muted">
+              By <%= review.author.username %>
+            </p>
+            <% if( currentUser && review.author.equals(currentUser._id)) { %>
+            <form
+              action="/racetracks/<%= racetrack.id %>/reviews/<%= review.id %>?_method=DELETE"
+              method="POST"
+            >
+              <button class="btn btn-sm btn-red">Delete review</button>
+            </form>
+            <% } %>
+          </div>
           <% } %>
         </div>
-        <% } %>
       </div>
     </div>
   </div>

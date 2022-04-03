@@ -566,11 +566,11 @@ footer {
   font-size: 1.5rem;
   margin-bottom: 0.5rem; }
 
-.review-container .review {
+.review-container .reviews .review {
   margin-bottom: 1.5rem;
   background-color: #ebebeb;
   padding: 0.5rem; }
-  .review-container .review .review-text {
+  .review-container .reviews .review .review-text {
     margin: 0.5rem 0; }
 
 .show-header-container {
