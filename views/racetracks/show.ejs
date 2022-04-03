@@ -30,6 +30,30 @@
         <li class="group-element text-muted"><%= racetrack.location %></li>
       </ul>
       <div id="map"></div>
+      <div class="btn-container">
+        <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
+        <form
+          action="/racetracks/<%= racetrack.id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-red">Delete this racetrack</button>
+        </form>
+        <form action="/racetracks/<%= racetrack.id %>/edit">
+          <a
+            class="btn btn-primary-green"
+            href="/racetracks/<%= racetrack.id %>/edit"
+            >Edit</a
+          >
+        </form>
+        <form action="/racetracks/<%= racetrack.id %>/photos">
+          <a
+            class="btn btn-primary-green"
+            href="/racetracks/<%= racetrack.id %>/photos"
+            >Manage photos</a
+          >
+        </form>
+        <% } %>
+      </div>
     </div>
     <div class="review-row">
       <div class="review-container">
@@ -133,36 +157,6 @@
           <% } %>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-6 my-3">
-    <div class="card">
-      <% if (currentUser && racetrack.author.equals(currentUser._id)) { %>
-      <div class="card-body">
-        <form
-          class="d-inline"
-          action="/racetracks/<%= racetrack.id %>?_method=DELETE"
-          method="POST"
-        >
-          <button class="btn btn-danger">Delete this racetrack</button>
-        </form>
-        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/edit">
-          <a class="btn btn-primary" href="/racetracks/<%= racetrack.id %>/edit"
-            >Edit</a
-          >
-        </form>
-        <form class="d-inline" action="/racetracks/<%= racetrack.id %>/photos">
-          <a
-            class="btn btn-primary"
-            href="/racetracks/<%= racetrack.id %>/photos"
-            >Manage photos</a
-          >
-        </form>
-      </div>
-      <% } %>
     </div>
   </div>
 </div>

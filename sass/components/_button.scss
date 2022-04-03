@@ -5,6 +5,7 @@
   border-radius: 0.5em;
   transition: all 0.2s;
   position: relative;
+  text-align: center;
 
   &-dark {
     background-color: $color-grey-dark;
@@ -64,5 +65,25 @@
 
   &:hover {
     background-color: rgba($color-black, 0.3);
+  }
+}
+
+.btn-container {
+  padding: 0.5rem 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+
+  .btn {
+    margin: 0.5rem;
+  }
+
+  @media screen and (max-width: 1200px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: $mobile-breakpoint) {
+    flex-direction: row;
+  }
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
   }
 }
