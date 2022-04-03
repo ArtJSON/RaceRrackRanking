@@ -1,16 +1,16 @@
 <% layout('layouts/boilerplate') %> 
-<div class="">
-    <h1>Login into your account</h1>
-    <form action="/login" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
+<div class="form-wrapper-md form-full-screen">
+    <form class="form form-center" action="/login" method="POST" class="validated-form" novalidate>
+        <h1 class="form-title">Login into your account</h1>
+        <div class="form-group">
             <label class="form-label" for="username">Username: </label>
             <input class="form-control" type="text" id="username" name="username" required>
         </div>
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label" for="password">Password: </label>
             <input class="form-control" type="password" id="password" name="password" required>
         </div>
-        <button class="btn btn-success">Login</button>
-        <p class="mt-5 h5 text-center">New to Race Track Ranking? <a href="/register">Register here</a></p>
+        <button class="btn btn-lg btn-primary-green form-group">Login</button>
+        <p class=" text-lg text-center">New to Race Track Ranking? <a class="text-primary-green bold" href="/register">Register here</a></p>
     </div>
 </form>

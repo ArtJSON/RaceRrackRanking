@@ -1,21 +1,22 @@
 <% layout('layouts/boilerplate') %> 
-<div class="">
-    <h1>Create a new account</h1>
-    <form action="/register" method="POST" class="validated-form" novalidate>
-        <div class="mb-3">
+<div class="form-wrapper-md form-full-screen">
+    <form class="form form-center" action="/register" method="POST" class="validated-form" novalidate>
+        <h1 class="form-title">Create a new account</h1>
+        <div class="form-group">
             <label class="form-label" for="username">Username: </label>
             <input class="form-control" type="text" id="username" name="username" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label" for="email">Email address: </label>
             <input class="form-control" type="email" id="email" name="email" required>
         </div>
 
-        <div class="mb-3">
+        <div class="form-group">
             <label class="form-label" for="password">Password: </label>
             <input class="form-control" type="password" id="password" name="password" required>
         </div>
-        <button class="btn btn-success">Create new account</button>
+        <button class="btn btn-lg btn-primary-green form-group">Create new account</button>
+        <p class=" text-lg text-center">Already have a account? <a class="text-primary-green bold" href="/login">Log in here</a></p>
     </div>
 </form>
