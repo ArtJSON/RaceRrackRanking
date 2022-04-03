@@ -60,6 +60,21 @@
 
 @media screen and (max-width: $mobile-breakpoint) {
   .show-container {
-    flex-direction: column;
+    .show {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .detail-row {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .review-row {
+        width: 100%;
+        margin: auto;
+        min-height: auto;
+      }
+    }
   }
 }

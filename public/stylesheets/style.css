@@ -699,5 +699,14 @@ footer {
       min-height: calc(100vh - 8.5rem); }
 
 @media screen and (max-width: 750px) {
-  .show-container {
-    flex-direction: column; } }
+  .show-container .show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    .show-container .show .detail-row {
+      width: 100%;
+      margin-bottom: 1rem; }
+    .show-container .show .review-row {
+      width: 100%;
+      margin: auto;
+      min-height: auto; } }
