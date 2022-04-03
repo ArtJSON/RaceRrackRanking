@@ -378,6 +378,9 @@ svg {
 .bold {
   font-weight: 700; }
 
+.mt-1 {
+  margin-top: 1rem; }
+
 .btn {
   padding: 0.5em 1em;
   text-transform: initial;
@@ -637,7 +640,8 @@ footer {
     height: calc(100vh - 12rem); } }
 
 .form {
-  background-color: #ebebeb; }
+  background-color: #ebebeb;
+  padding: 1rem; }
   .form .form-group {
     margin: 2rem 0;
     position: relative; }
@@ -733,6 +737,9 @@ footer {
       .show-container .show .detail-row .detail-row-group .group-element + .group-element {
         border-top: solid #9fd73d 2px;
         padding-top: 0.5rem; }
+      .show-container .show .detail-row #map {
+        width: 100%;
+        height: 400px; }
     .show-container .show .review-row {
       margin-left: 1rem;
       width: 60%;
