@@ -867,3 +867,17 @@ ul.image-checkbox-list {
       box-shadow: inset 0px 0px 16px 0px #d00000; }
       ul.image-checkbox-list li input:checked + label img {
         transform: scale(0.95); }
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 2rem;
+  width: 1400px;
+  max-width: 95vw; }
+  .error-container .error {
+    padding: 2rem;
+    background-color: #ffb7b7; }
+    .error-container .error > * {
+      margin-bottom: 1rem; }

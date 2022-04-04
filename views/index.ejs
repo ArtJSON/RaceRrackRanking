@@ -2,6 +2,7 @@
 <div class="header-container">
   <header class="header">
     <div class="header-text-box">
+      <% if (racetrack) { %>
       <div class="racetrack-card-container">
         <span class="header-heading">Our suggestion for today:</span>
         <div class="racetrack-card">
@@ -9,7 +10,7 @@
             class="card-img"
             alt="MISSING JPG"
             src="<%= racetrack.img[0] ?
-          racetrack.img[0].carousel : 'img/noimg.jpg' %>"
+      racetrack.img[0].carousel : 'img/noimg.jpg' %>"
           />
           <div class="card-content">
             <div class="text-content">
@@ -31,8 +32,9 @@
           </div>
         </div>
       </div>
+      <% } %>
       <div class="move-in-bottom">
-        <span class="header-heading">Or check our full race track offer:</span>
+        <span class="header-heading">Check our full race track offer:</span>
         <div class="btn-container btn-container-center">
           <a
             class="btn btn-lg btn-primary-green move-in-left"

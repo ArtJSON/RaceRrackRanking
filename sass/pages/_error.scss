@@ -1,0 +1,19 @@
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding-top: 2rem;
+
+  .error {
+    padding: 2rem;
+    background-color: lighten($color: $color-danger, $amount: 45);
+
+    > * {
+      margin-bottom: 1rem;
+    }
+  }
+
+  width: 1400px;
+  max-width: 95vw;
+}
