@@ -28,7 +28,7 @@ const users = require("./routes/users");
 // env var
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/racetrackDB";
 const secret = process.env.SECRET || "someSecret";
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 // mongoose connection to mongoDB
 mongoose // "mongodb://localhost:27017/racetrackDB" or process.env.DB_URL
