@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile:sass": "node-sass sass/main.scss public/stylesheets/style.css -w -r ",
-    "watch": "nodemon ./index.js & node-sass sass/main.scss public/stylesheets/style.css -w"
+    "watch": "nodemon ./index.js & node-sass sass/main.scss public/stylesheets/style.css -w",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "@mapbox/mapbox-sdk": "^0.13.3",
     "cloudinary": "^1.28.1",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "ejs-mate": "^3.0.0",

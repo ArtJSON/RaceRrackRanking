@@ -633,7 +633,8 @@ footer {
 
 .show-header-container {
   height: 30vh;
-  margin: 30px auto;
+  margin: 0 auto;
+  padding-top: 2rem;
   max-width: 95%; }
   .show-header-container .show-header {
     display: flex;

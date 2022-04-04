@@ -19,13 +19,20 @@ const Racetrack = require("./models/racetrack");
 const mogoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 
+const MongoDBStore = require("connect-mongo")(session);
+
 const racetracks = require("./routes/racetracks");
 const reviews = require("./routes/reviews");
 const users = require("./routes/users");
 
+// env var
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/racetrackDB";
+const secret = process.env.SECRET || "someSecret";
+const port = process.env.port || 3000;
+
 // mongoose connection to mongoDB
-mongoose // local conectionmongodb://localhost:27017/racetrackDB
-  .connect(process.env.DB_URL)
+mongoose // "mongodb://localhost:27017/racetrackDB" or process.env.DB_URL
+  .connect(dbUrl)
   .then(() => {
     console.log("Racetack database connection open");
   })
@@ -48,10 +55,23 @@ app.use(
   })
 );
 
+//
+
+const store = new MongoDBStore({
+  url: dbUrl,
+  secret: secret,
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", function (e) {
+  console.log("Session store error", e);
+});
+
 // session configuration - needs to be changed in production
 const sessionConfig = {
+  store: store,
   name: "session",
-  secret: "someSecret",
+  secret: secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -156,6 +176,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error", { err });
 });
 
-app.listen(3333, () => {
-  console.log("Listening on port 3333");
+app.listen(port, () => {
+  console.log("Listening on port", port);
 });
