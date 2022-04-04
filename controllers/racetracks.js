@@ -101,8 +101,8 @@ module.exports.renderShowPage = async (req, res, next) => {
 
 module.exports.updateRacetrack = async (req, res, next) => {
   const { id } = req.params;
-
-  const racetrack = await Racetrack.findById(id, req.body.racetrack);
+  console.log(req.body.racetrack);
+  const racetrack = await Racetrack.findByIdAndUpdate(id, req.body.racetrack);
   req.flash("success", "Successfully updated race track data");
   res.redirect(`/racetracks/${racetrack.id}`);
 };
