@@ -13,7 +13,11 @@
         <% } %>
         <div class="carousel-slide">
           <% let i = 0; for( let img of racetrack.img) { %>
-          <img src="<%= img.carousel %> " alt="Race track image #<%= ++i %> " />
+          <img
+            src="<%= img.carousel %> "
+            class="img-expandable"
+            alt="Race track image #<%= ++i %> "
+          />
           <% } %>
         </div>
         <% if (racetrack.img.length > 1) { %>
@@ -165,3 +169,4 @@
 </script>
 <script src="/scripts/showMapbox.js"></script>
 <script src="/scripts/carousel.js"></script>
+<script src="/scripts/imgExpandable.js"></script>
