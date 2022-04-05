@@ -675,6 +675,13 @@ footer {
     .flash-container .flash-danger {
       background-color: #d00000; }
 
+.img-expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  transform: translate(-50%, -50%); }
+
 .header-container {
   padding: 30px;
   height: calc(100vh - 5.5rem); }
