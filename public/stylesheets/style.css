@@ -676,7 +676,7 @@ footer {
       background-color: #d00000; }
 
 .img-expanded-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
