@@ -2,13 +2,29 @@ const imgs = document.querySelectorAll(".img-expandable");
 
 imgs.forEach((img) => {
   img.addEventListener("click", function () {
-    let fullImg = document.createElement("img");
-    fullImg.src =
-      "https://res.cloudinary.com/dixadtjff/image/upload/c_fill,h_600,w_800/v1648921468/racetracks/ylkhk9fhkuf97oacilw2.jpg".replace(
-        /(?<=upload).(?:(?!\/).)*\//g,
-        "/"
-      );
-    fullImg.classList.add("img-expanded");
-    img.parentElement.parentElement.parentElement.append(fullImg);
+    // create expanded img
+    let imgExpanded = document.createElement("img");
+    imgExpanded.src = img.dataset.full;
+    imgExpanded.classList.add("img-expanded");
+
+    // create button for closing expanded img
+    let btn = document.createElement("btn");
+    btn.classList.add("img-expanded-btn");
+    btn.textContent = "✕";
+
+    // create container
+    let imgExpandedContainer = document.createElement("div");
+    imgExpandedContainer.classList.add("img-expanded-container");
+
+    // append elements to the container
+    imgExpandedContainer.append(imgExpanded);
+    imgExpandedContainer.append(btn);
+
+    // append container to the DOM
+    img.parentElement.parentElement.parentElement.append(imgExpandedContainer);
+
+    btn.addEventListener("click", function () {
+      imgExpandedContainer.parentElement.removeChild(imgExpandedContainer);
+    });
   });
 });

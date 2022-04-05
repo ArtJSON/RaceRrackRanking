@@ -15,6 +15,7 @@
           <% let i = 0; for( let img of racetrack.img) { %>
           <img
             src="<%= img.carousel %> "
+            data-full="<%= img.url %> "
             class="img-expandable"
             alt="Race track image #<%= ++i %> "
           />

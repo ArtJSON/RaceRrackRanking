@@ -1,7 +1,42 @@
-.img-expanded {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 20;
-  transform: translate(-50%, -50%);
+.img-expanded-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-black, 0.5);
+  z-index: 2;
+  .img-expanded {
+    max-height: 90%;
+    max-width: 90%;
+
+    object-fit: cover;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+  }
+
+  .img-expanded-btn {
+    box-sizing: content-box;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 2rem;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 4;
+
+    background-color: $color-primary-green;
+    color: $color-white;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+  }
 }
