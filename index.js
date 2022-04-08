@@ -10,6 +10,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
+const calculateAvg = require("./utils/calculateAvg");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
@@ -161,6 +162,7 @@ app.get("/", async (req, res) => {
   const random = Math.floor(Math.random() * count);
   const racetrack = await Racetrack.findOne().skip(random);
 
+  calculateAvg([racetrack]);
   res.render("index", { racetrack });
 });
 

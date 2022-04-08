@@ -14,20 +14,19 @@
           />
           <div class="card-content">
             <div class="text-content">
-              <h2 class="card-title"><%= racetrack.name %></h2>
-              <hr />
-              <p>
-                <small class="text-location"><%= racetrack.location %></small>
+              <h2 class="card-title text-content-element">
+                <%= racetrack.name %>
+              </h2>
+              <p class="text-location text-content-element">
+                <%= racetrack.location %>
               </p>
-              <hr />
-              <p class="card-text"><%= racetrack.description %></p>
-            </div>
-            <div class="btn-content">
-              <a
-                class="btn btn-primary-green"
-                href="/racetracks/<%= racetrack.id %>"
-                >Details</a
-              >
+              <p class="card-text text-content-element">
+                <%= racetrack.description %>
+              </p>
+              <p class="card-text text-content-element">
+                <% if (racetrack.avg != -1) { %> Average rating: <%=
+                racetrack.avg%> <% } else { %> No reviews <% } %>
+              </p>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 const Racetrack = require("../models/racetrack");
 const mapboxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapboxToken = process.env.MAPBOX_TOKEN;
+const calculateAvg = require("../utils/calculateAvg");
 
 const geocoder = mapboxGeocoding({ accessToken: mapboxToken });
 
@@ -9,20 +10,7 @@ const { cloudinary } = require("../cloudinary");
 module.exports.index = async (req, res) => {
   const racetracks = await Racetrack.find({}).populate("reviews");
 
-  for (racetrack of racetracks) {
-    const id = racetrack.id;
-    const reviews = racetrack.id;
-
-    if (racetrack.reviews.length) {
-      let sum = 0;
-      for (review of racetrack.reviews) {
-        sum += review.rating;
-      }
-      racetrack.avg = sum / racetrack.reviews.length;
-    } else {
-      racetrack.avg = -1;
-    }
-  }
+  calculateAvg(racetracks);
 
   res.render("racetracks/index", { racetracks });
 };
@@ -112,6 +100,7 @@ module.exports.renderShowPage = async (req, res, next) => {
     req.flash("error", "Cannot find this race track");
     res.redirect("/racetracks");
   }
+  calculateAvg([racetrack]);
   res.render("racetracks/show", { racetrack });
 };
 
