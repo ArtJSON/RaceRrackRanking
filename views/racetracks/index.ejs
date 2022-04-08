@@ -22,6 +22,10 @@
           <p class="card-text text-content-element">
             <%= racetrack.description %>
           </p>
+          <p class="card-text text-content-element">
+            <% if (racetrack.avg != -1) { %> Average rating: <%= racetrack.avg%>
+            <% } else { %> No reviews <% } %>
+          </p>
         </div>
         <div class="btn-content">
           <a

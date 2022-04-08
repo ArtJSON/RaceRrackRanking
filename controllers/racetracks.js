@@ -7,7 +7,23 @@ const geocoder = mapboxGeocoding({ accessToken: mapboxToken });
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
-  const racetracks = await Racetrack.find({});
+  const racetracks = await Racetrack.find({}).populate("reviews");
+
+  for (racetrack of racetracks) {
+    const id = racetrack.id;
+    const reviews = racetrack.id;
+
+    if (racetrack.reviews.length) {
+      let sum = 0;
+      for (review of racetrack.reviews) {
+        sum += review.rating;
+      }
+      racetrack.avg = sum / racetrack.reviews.length;
+    } else {
+      racetrack.avg = -1;
+    }
+  }
+
   res.render("racetracks/index", { racetracks });
 };
 
