@@ -34,7 +34,7 @@ module.exports.isAuthor = async (req, res, next) => {
 };
 
 module.exports.authAdmin = async (req, res, next) => {
-  if (!req.user.username === "admin") {
+  if (!req.user || !req.user.username === "admin") {
     req.flash("error", "You do not have permission to do that");
     return res.redirect(`/`);
   }

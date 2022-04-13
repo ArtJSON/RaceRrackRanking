@@ -19,12 +19,14 @@ const User = require("./models/user");
 const Racetrack = require("./models/racetrack");
 const mogoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
+const { authAdmin } = require("./utils/middleware");
 
 const MongoDBStore = require("connect-mongo")(session);
 
 const racetracks = require("./routes/racetracks");
 const reviews = require("./routes/reviews");
 const users = require("./routes/users");
+const admin = require("./routes/admin");
 
 // env var
 const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/racetrackDB";
@@ -155,6 +157,7 @@ app.use(
 
 app.use("/", users);
 app.use("/racetracks", racetracks);
+app.use("/admin", admin);
 app.use("/racetracks/:id/reviews", reviews);
 
 app.get("/", async (req, res) => {
