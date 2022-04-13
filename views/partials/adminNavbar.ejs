@@ -1,0 +1,18 @@
+<div class="navbar-container">
+  <nav class="navbar navbar-dark">
+    <h1 class="navbar-title">Admin controls</h1>
+    <ul class="navbar-links">
+      <li>
+        <li><a class="navbar-content-sub" href="#">Racetracks</a></li>
+        <li><a class="navbar-content-sub" href="#">Reviews</a></li>
+        <li><a class="navbar-content-sub" href="#">Users</a></li>
+      </li>
+    </ul>
+    <ul class="navbar-links push account">
+      <li><a class="navbar-content-sub" href="/">Standard page</a></li>
+      <% if (!currentUser) { %> <% } else {%>
+      <li><a class="navbar-content-sub" href="/logout">Log out</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</div>

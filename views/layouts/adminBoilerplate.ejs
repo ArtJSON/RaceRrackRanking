@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Race track ranking</title>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link href="/stylesheets/style.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+  </head>
+  <body>
+    <%- include('../partials/adminNavbar')%>
+    <main><%- include('../partials/flash') %> <%- body %></main>
+    <%- include('../partials/footer')%>
+
+    <script src="/scripts/validateForms.js"></script>
+  </body>
+</html>
