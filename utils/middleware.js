@@ -33,6 +33,14 @@ module.exports.isAuthor = async (req, res, next) => {
   next();
 };
 
+module.exports.authAdmin = async (req, res, next) => {
+  if (!req.user.username === "admin") {
+    req.flash("error", "You do not have permission to do that");
+    return res.redirect(`/`);
+  }
+  next();
+};
+
 module.exports.isReviewAuthor = async (req, res, next) => {
   const { id, reviewId } = req.params;
   const review = await Review.findById(reviewId);
