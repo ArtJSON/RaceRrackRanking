@@ -160,7 +160,7 @@ app.use("/racetracks/:id/reviews", reviews);
 app.get("/", async (req, res) => {
   const count = await Racetrack.count();
   const random = Math.floor(Math.random() * count);
-  const racetrack = await Racetrack.findOne().skip(random);
+  const racetrack = await Racetrack.findOne().skip(random).populate("reviews");
 
   calculateAvg([racetrack]);
   res.render("index", { racetrack });
