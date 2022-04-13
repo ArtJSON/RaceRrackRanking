@@ -11,6 +11,7 @@ module.exports = async (racetracks) => {
       for (review of racetrack.reviews) {
         sum += review.rating;
       }
+
       racetrack.avg = sum / racetrack.reviews.length;
     } else {
       racetrack.avg = -1;

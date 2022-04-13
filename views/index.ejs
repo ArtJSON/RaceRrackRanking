@@ -24,8 +24,12 @@
                 <%= racetrack.description %>
               </p>
               <p class="card-text text-content-element">
-                <% if (racetrack.avg != -1) { %> Average rating: <%=
-                racetrack.avg%> <% } else { %> No reviews <% } %>
+                <% if (racetrack.avg != -1) { %> 
+                <p class="starability-result" data-rating="<%=Math.floor(racetrack.avg)%>">
+                  Rated: <%= racetrack.avg %> stars
+                </p>
+                <p >Average rating: <%= racetrack.avg %></p>
+                <% } else { %> No reviews <% } %>
               </p>
             </div>
           </div>
